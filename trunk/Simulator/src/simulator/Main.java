@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package simulator;
 
 import java.awt.EventQueue;
@@ -15,20 +14,20 @@ import java.awt.EventQueue;
 public class Main {
 
     public Main() {
-        Ambiente ambiente = new Ambiente();        
+        Ambiente ambiente = new Ambiente();
         for (int i = 1; i < 4; i++) {
-            ambiente.addActor(new Robot("r"+i,true), ambiente.getRandomLocation());
+            ambiente.addActor(new Robot("r" + i, true), ambiente.getRandomLocation());
         }
-        
+
         ambiente.init();
     }
- 
-    public static void main(String[] args) {        
-        EventQueue.invokeLater(new Runnable()  {
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 Main main = new Main();
             }
-        });        
+        });
     }
 }
