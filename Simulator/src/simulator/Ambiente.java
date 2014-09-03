@@ -30,7 +30,7 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
         ArrayList<Actor> atores = getActors(Robot.class);
         for (int i = 0; i < atores.size(); i++) {
             Actor ac = atores.get(i);
-            ac.act();
+            //ac.act();
             ac.setCollisionCircle(new Point(0, 0), 5);
             ac.addActorCollisionListener(this);
             for (int k = 0; k < getActors(Robot.class).size(); k++) {
