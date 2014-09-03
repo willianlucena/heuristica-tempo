@@ -40,7 +40,6 @@ public class Robot extends Actor {
         super(true, Robotfill.getFill());
         this.id = id;
         this.setSlowDown(new Random().nextInt(2));
-        setDirection(Location.EAST);
     }
 
     public String getId() {
@@ -86,30 +85,27 @@ public class Robot extends Actor {
     }
 
     public void esquerda() {
-        setDirection(Location.WEST);
+        setDirection(getDirection() + 270);
         if (isMoveValid()) {
             move(1);
         }
-
     }
 
     public void direita() {
-        setDirection(Location.EAST);
+        setDirection(getDirection() + 90);
         if (isMoveValid()) {
             move(1);
         }
     }
 
     public void frente() {
-        setDirection(Location.NORTH);
         if (isMoveValid()) {
             move(1);
         }
-
     }
 
     public void tras() {
-        setDirection(Location.SOUTH);
+        setDirection(getDirection() + 180);
         if (isMoveValid()) {
             move(1);
         }
@@ -121,7 +117,8 @@ public class Robot extends Actor {
             showId(false);
         }
         showNextSprite();
-        varredura();
+        //varredura();
+        direita();
     }
 
     private void showId(boolean showIndex) {
