@@ -6,7 +6,6 @@
 package simulator;
 
 import java.awt.EventQueue;
-import java.util.Random;
 
 /**
  *
@@ -16,12 +15,6 @@ public class Main {
 
     public Main() {
         Ambiente ambiente = new Ambiente();
-        for (int i = 1; i < 4; i++) {
-            Robot r = new Robot("r" + i, true);
-            ambiente.addActor(r, ambiente.getRandomLocation());
-            r.setDirection(new Random().nextInt(360));
-        }
-
         ambiente.init();
     }
 
