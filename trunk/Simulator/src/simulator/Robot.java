@@ -117,8 +117,8 @@ public class Robot extends Actor {
             showId(false);
         }
         showNextSprite();
-        //varredura();
-        direita();
+        varredura();
+        //direita();
     }
 
     private void showId(boolean showIndex) {
