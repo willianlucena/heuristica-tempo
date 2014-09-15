@@ -14,7 +14,7 @@ import java.awt.EventQueue;
 public class Main {
 
     public Main() {
-        Ambiente ambiente = new Ambiente();
+        Ambiente ambiente = new Ambiente("src/simulator/grid.txt");
         ambiente.init();
     }
 

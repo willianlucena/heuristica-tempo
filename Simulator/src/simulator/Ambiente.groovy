@@ -21,10 +21,29 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
     private static Color ambienteColor = Color.WHITE;
 
-    public Ambiente() {
+    public Ambiente(int model) {
         super(30, 30, 20, ambienteColor, true);
         this.setBgColor(ambienteColor);
-        desenharAmbiente("");
+        desenharAmbiente(model);
+        desenharAtores();
+
+    }
+
+    public Ambiente(String path) {
+        super(30, 30, 20, ambienteColor, true);
+        this.setBgColor(ambienteColor);
+        println path
+        def file = new File(path);
+        println file.getAbsolutePath()
+        desenharAmbiente(file);
+        desenharAtores();
+
+    }
+
+    public Ambiente(File file) {
+        super(30, 30, 20, ambienteColor, true);
+        this.setBgColor(ambienteColor);
+        desenharAmbiente(file);
         desenharAtores();
 
     }
@@ -68,7 +87,11 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
     }
 
-    private void desenharAmbiente(String plantaAmbiente) {
+    private void desenharAmbiente(int model) {
+
+    }
+
+    private void desenharAmbiente(File file) {
         String gridTeste =
                 "    xxxxx          " + // 0 (19)
                 "    x...x          " + // 1
@@ -81,13 +104,14 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
                 "xxxxx.xxx.xAxx..oox" + // 8
                 "    x.....xxxxxxxxx" + // 9
                 "    xxxxxxx        ";  //10
-        if (plantaAmbiente.length() > 0) {
-            plantaAmbiente = gridTeste;
-        } else {
-        }
         //Trazer já o numero de linhas e colunas? ou tentar pegar da string passada?
         //Como será em um arquivo, o readline já iria indicando a quantidade de linhas.
         //Caso seja uma string como a de ex, não tem como saber. A não ser que colocasse um char para dizer que acabou a linha.
+        def reader = file.newReader();
+        while (reader.ready()) {
+            String linha = reader.readLine()
+            println linha
+        }
     }
 
     private void desenharAtores() {
@@ -97,32 +121,32 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
             r.setDirection(new Random().nextInt(360));
         }
 
-//        int stoneIndex = 0;
-//        int targetIndex = 0;
-//        for (int y = 0; y < nbVertCells; y++) {
-//            for (int x = 0; x < nbHorzCells; x++) {
-//                Location location = new Location(x, y);
-//                int a = grid.getCell(location);
-//                if (a == 5) // Sokoban actor
-//                {
-//                    sok = new SokobanActor();
-//                    addActor(sok, location);
-//                }
-//                if (a == 3) // Stones
-//                {
-//                    stones[stoneIndex] = new SokobanStone();
-//                    addActor(stones[stoneIndex], location);
-//                    stoneIndex++;
-//                }
-//                if (a == 4) // Targets
-//                {
-//                    targets[targetIndex] = new SokobanTarget();
-//                    addActor(targets[targetIndex], location);
-//                    targetIndex++;
-//                }
-//            }
-//        }
-//        setPaintOrder(SokobanTarget.class);
+        //        int stoneIndex = 0;
+        //        int targetIndex = 0;
+        //        for (int y = 0; y < nbVertCells; y++) {
+        //            for (int x = 0; x < nbHorzCells; x++) {
+        //                Location location = new Location(x, y);
+        //                int a = grid.getCell(location);
+        //                if (a == 5) // Sokoban actor
+        //                {
+        //                    sok = new SokobanActor();
+        //                    addActor(sok, location);
+        //                }
+        //                if (a == 3) // Stones
+        //                {
+        //                    stones[stoneIndex] = new SokobanStone();
+        //                    addActor(stones[stoneIndex], location);
+        //                    stoneIndex++;
+        //                }
+        //                if (a == 4) // Targets
+        //                {
+        //                    targets[targetIndex] = new SokobanTarget();
+        //                    addActor(targets[targetIndex], location);
+        //                    targetIndex++;
+        //                }
+        //            }
+        //        }
+        //        setPaintOrder(SokobanTarget.class);
     }
 
 }
