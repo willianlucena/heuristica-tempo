@@ -14,16 +14,30 @@ import java.awt.EventQueue;
 public class Main {
 
     public Main() {
-        Ambiente ambiente = new Ambiente("src/simulator/grid.txt");
+
+        String gridTeste =
+                "    xxxxx          \n" + // 0 (19)
+                "    x...x          \n" + // 1
+                "    x*..x          \n" + // 2
+                "  xxx..*xx         \n" + // 3
+                "  x..*.*.x         \n" + // 4
+                "xxx.x.xx.x   xxxxxx\n" + // 5
+                "x...x.xx.xxxxx..oox\n" + // 6
+                "x.*..*..........oox\n" + // 7
+                "xxxxx.xxx.xAxx..oox\n" + // 8
+                "    x.....xxxxxxxxx\n" + // 9
+                "    xxxxxxx        \n";  //10
+
+        Ambiente ambiente = new Ambiente(gridTeste);
         ambiente.init();
     }
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Main main = new Main();
-            }
-        });
+                @Override
+                public void run() {
+                    Main main = new Main();
+                }
+            });
     }
 }

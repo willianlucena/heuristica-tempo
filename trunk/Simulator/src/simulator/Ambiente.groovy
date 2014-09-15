@@ -29,21 +29,18 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
     }
 
-    public Ambiente(String path) {
+    public Ambiente(String stringGrid) {
         super(30, 30, 20, ambienteColor, true);
         this.setBgColor(ambienteColor);
-        println path
-        def file = new File(path);
-        println file.getAbsolutePath()
-        desenharAmbiente(file);
+        desenharAmbiente(stringGrid);
         desenharAtores();
 
     }
 
-    public Ambiente(File file) {
+    public Ambiente(File fileGrid) {
         super(30, 30, 20, ambienteColor, true);
         this.setBgColor(ambienteColor);
-        desenharAmbiente(file);
+        desenharAmbiente(fileGrid);
         desenharAtores();
 
     }
@@ -91,22 +88,18 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
     }
 
+    private void desenharAmbiente(String grid) {
+        gridTeste.eachLine { linha ->
+            linha.eachWithIndex { i, letra ->
+                println i + " - " + letra
+            }
+            return
+        }
+
+    }
+
     private void desenharAmbiente(File file) {
-        String gridTeste =
-                "    xxxxx          " + // 0 (19)
-                "    x...x          " + // 1
-                "    x*..x          " + // 2
-                "  xxx..*xx         " + // 3
-                "  x..*.*.x         " + // 4
-                "xxx.x.xx.x   xxxxxx" + // 5
-                "x...x.xx.xxxxx..oox" + // 6
-                "x.*..*..........oox" + // 7
-                "xxxxx.xxx.xAxx..oox" + // 8
-                "    x.....xxxxxxxxx" + // 9
-                "    xxxxxxx        ";  //10
-        //Trazer já o numero de linhas e colunas? ou tentar pegar da string passada?
-        //Como será em um arquivo, o readline já iria indicando a quantidade de linhas.
-        //Caso seja uma string como a de ex, não tem como saber. A não ser que colocasse um char para dizer que acabou a linha.
+
         def reader = file.newReader();
         while (reader.ready()) {
             String linha = reader.readLine()
