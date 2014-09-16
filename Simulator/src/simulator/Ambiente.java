@@ -10,8 +10,8 @@ import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.GameGrid;
 import java.awt.Color;
 import java.awt.Point;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -89,29 +89,29 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
     }
 
     private void desenharAmbiente(String grid) {
-        gridTeste.eachLine { linha ->
-            linha.eachWithIndex { i, letra ->
-                println i + " - " + letra
-            }
-            return
-        }
-
+        /*      gridTeste.eachLine { linha ->
+         linha.eachWithIndex { i, letra ->
+         println i + " - " + letra
+         }
+         return
+         }
+         */
     }
 
     private void desenharAmbiente(File file) {
 
-        def reader = file.newReader();
-        while (reader.ready()) {
-            String linha = reader.readLine()
-            println linha
-        }
+        /* def reader = file.newReader();
+         while (reader.ready()) {
+         String linha = reader.readLine()
+         println linha
+         }*/
     }
 
     private void desenharAtores() {
         for (int i = 1; i < 4; i++) {
             Robot r = new Robot("r" + i, true);
             this.addActor(r, this.getRandomLocation());
-            r.setDirection(new Random().nextInt(360));
+            //r.setDirection(new Random().nextInt(360));
         }
 
         //        int stoneIndex = 0;
