@@ -5,6 +5,8 @@
  */
 package simulator;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author willian
@@ -49,7 +51,7 @@ public class Configuracao extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Meu projeto");
         setResizable(false);
 
@@ -188,7 +190,7 @@ public class Configuracao extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(criarAmbiente)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -207,7 +209,7 @@ public class Configuracao extends javax.swing.JFrame {
         jDesktopPane1.setLayer(qtd_tarefas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Arquivo");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -246,10 +248,10 @@ public class Configuracao extends javax.swing.JFrame {
 
         Object[][] linhas_robos = Util.montarTabelaRobos((Integer) qtd_robos.getValue());
         tabela_robos.setModel(new javax.swing.table.DefaultTableModel(
-                linhas_robos,
-                new String[]{
-                    "", "Conhecimentos básicos", "Capacidades físicas"
-                }
+            linhas_robos,
+            new String[]{
+                "", "Conhecimentos básicos", "Capacidades físicas"
+            }
         ) {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
@@ -283,10 +285,10 @@ public class Configuracao extends javax.swing.JFrame {
         Object[][] linhas_tarefas = Util.montarTabelaTarefas((Integer) qtd_tarefas.getValue());
 
         tabela_tarefas.setModel(new javax.swing.table.DefaultTableModel(
-                linhas_tarefas,
-                new String[]{
-                    "", "Conhecimentos básicos", "Capacidades físicas"
-                }
+            linhas_tarefas,
+            new String[]{
+                "", "Conhecimentos básicos", "Capacidades físicas"
+            }
         ) {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
@@ -308,14 +310,33 @@ public class Configuracao extends javax.swing.JFrame {
     private void criarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarAmbienteActionPerformed
 
         Util.bindConfig(
-                altura_y,
-                largura_x,
-                qtd_robos,
-                qtd_tarefas,
-                robos_random,
-                tabela_robos,
-                tabela_tarefas,
-                tarefas_random);
+            altura_y,
+            largura_x,
+            qtd_robos,
+            qtd_tarefas,
+            robos_random,
+            tabela_robos,
+            tabela_tarefas,
+            tarefas_random);
+        
+        GridConfig grid = new GridConfig((Integer) largura_x.getValue(), (Integer) altura_y.getValue(), 50);
+        ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
+        config.setVisible(true);
+        
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new Configuracao().setVisible(true);
+//            }
+//        });
+
+        int confirm = JOptionPane.showOptionDialog(this,
+            "Are You Sure to Close this Application?",
+            "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (confirm == JOptionPane.YES_OPTION) {
+            config.dispose();
+        }
 
     }//GEN-LAST:event_criarAmbienteActionPerformed
 
@@ -329,26 +350,23 @@ public class Configuracao extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
 //                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configuracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configuracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configuracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//                    break;
+//                }
+//            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Configuracao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Configuracao().setVisible(true);
             }

@@ -9,7 +9,6 @@ import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.GameGrid;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Point;
 import java.util.ArrayList;
 
