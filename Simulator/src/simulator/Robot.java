@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -19,9 +21,16 @@ import java.util.Random;
  */
 public class Robot extends Actor {
 
-    String id;
+    String id; //nome robo
     boolean noSul = false;
     private boolean showId = false;
+    
+    //propriedade presente no robo da heuristica
+    private Set<String> sabeRobot = new TreeSet<>();
+	private Set<String> fazRobot = new TreeSet<>();
+	private Integer peso = 0;
+	private Integer tempoRobot = 0;
+	private Integer tempoTrabalhoRobot = 0;
 
     public Robot(String id, boolean showId) {
         this(id);
@@ -130,4 +139,47 @@ public class Robot extends Actor {
 
         }
     }
+
+    public Set<String> getSabeRobot() {
+        return sabeRobot;
+    }
+
+    public void setSabeRobot(Set<String> sabeRobot) {
+        this.sabeRobot = sabeRobot;
+    }
+
+    public Set<String> getFazRobot() {
+        return fazRobot;
+    }
+
+    public void setFazRobot(Set<String> fazRobot) {
+        this.fazRobot = fazRobot;
+    }
+
+    public Integer getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+
+    public Integer getTempoRobot() {
+        return tempoRobot;
+    }
+
+    public void setTempoRobot(Integer tempoRobot) {
+        this.tempoRobot = tempoRobot;
+    }
+
+    public Integer getTempoTrabalhoRobot() {
+        return tempoTrabalhoRobot;
+    }
+
+    public void setTempoTrabalhoRobot(Integer tempoTrabalhoRobot) {
+        this.tempoTrabalhoRobot = tempoTrabalhoRobot;
+    }
+    
+    
+    
 }

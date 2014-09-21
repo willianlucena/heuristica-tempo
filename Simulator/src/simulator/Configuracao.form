@@ -91,8 +91,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tarefas_random" alignment="1" max="32767" attributes="0"/>
-                              <Component id="robos_random" min="-2" pref="181" max="-2" attributes="0"/>
+                              <Component id="tarefas_random" max="32767" attributes="0"/>
+                              <Component id="robos_random" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">

@@ -14,6 +14,6 @@ import ch.aplu.jgamegrid.Actor;
 public class Obstaculo extends Actor {
 
     public Obstaculo() {
-        super("sprites/stone.gif", 2); // Two sprites
+        super("sprite/stone.gif", 2); // Two sprites
     }
 }

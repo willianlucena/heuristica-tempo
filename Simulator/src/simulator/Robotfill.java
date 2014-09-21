@@ -38,7 +38,7 @@ public class Robotfill {
             BufferedImage image0 = ImageIO.read(file0);
             BufferedImage image1 = ImageIO.read(file1);
 
-            List bufferes = new ArrayList<BufferedImage>();
+            List bufferes = new ArrayList<>();
 
             bufferes.add(GGBitmap.floodFill(image0, new Point(15, 15), Color.WHITE, color));
             bufferes.add(GGBitmap.floodFill(image1, new Point(15, 15), Color.WHITE, color));

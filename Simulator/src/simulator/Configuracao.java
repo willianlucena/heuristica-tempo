@@ -5,8 +5,6 @@
  */
 package simulator;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author willian
@@ -144,8 +142,8 @@ public class Configuracao extends javax.swing.JFrame {
                                 .addComponent(qtd_robos, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(64, 64, 64)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tarefas_random, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(robos_random, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tarefas_random, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(robos_random, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(criarAmbiente)
                         .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -257,7 +255,7 @@ public class Configuracao extends javax.swing.JFrame {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, true, true
+                true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -294,7 +292,7 @@ public class Configuracao extends javax.swing.JFrame {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                false, true, true
+                true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -309,17 +307,20 @@ public class Configuracao extends javax.swing.JFrame {
 
     private void criarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarAmbienteActionPerformed
 
-        Util.bindConfig(
+        GridConfig grid = Util.bindConfig(
             altura_y,
             largura_x,
+            
             qtd_robos,
             qtd_tarefas,
-            robos_random,
+            
             tabela_robos,
             tabela_tarefas,
+            
+            robos_random,
             tarefas_random);
         
-        GridConfig grid = new GridConfig((Integer) largura_x.getValue(), (Integer) altura_y.getValue(), 50);
+        //GridConfig grid = new GridConfig(3, 3, 50);
         ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
         config.setVisible(true);
         
@@ -329,7 +330,7 @@ public class Configuracao extends javax.swing.JFrame {
 //                new Configuracao().setVisible(true);
 //            }
 //        });
-
+/*
         int confirm = JOptionPane.showOptionDialog(this,
             "Are You Sure to Close this Application?",
             "Exit Confirmation", JOptionPane.YES_NO_OPTION,
@@ -337,7 +338,7 @@ public class Configuracao extends javax.swing.JFrame {
         if (confirm == JOptionPane.YES_OPTION) {
             config.dispose();
         }
-
+*/
     }//GEN-LAST:event_criarAmbienteActionPerformed
 
     /**
