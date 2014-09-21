@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
-    private static Color ambienteColor = Color.WHITE;
+    private static final Color ambienteColor = Color.WHITE;
 
     public Ambiente() {
         super(30, 30, 20, Color.RED, true);
@@ -27,8 +27,7 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
 
     public void init() {
         ArrayList<Actor> atores = getActors(Robot.class);
-        for (int i = 0; i < atores.size(); i++) {
-            Actor ac = atores.get(i);
+        for (Actor ac : atores) {
             //ac.act();
             ac.setCollisionCircle(new Point(0, 0), 5);
             ac.addActorCollisionListener(this);
@@ -38,7 +37,6 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
                     ac.addCollisionActor(collider);
                 }
             }
-
         }
 
         show();
