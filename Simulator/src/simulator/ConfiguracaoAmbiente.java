@@ -5,6 +5,8 @@
  */
 package simulator;
 
+import java.util.Set;
+
 /**
  *
  * @author willian
@@ -30,34 +32,55 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
 
     private void initComponents(GridConfig gridConfig) {
         gridConfig1 = gridConfig;
-        
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaTarefa = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+
+        label_lista_robo = new javax.swing.JLabel();
         listaRobo = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
+        scroll_lista_robo = new javax.swing.JScrollPane();
+
+        label_lista_tarefa = new javax.swing.JLabel();
+        listaTarefa = new javax.swing.JList();
+        scroll_lista_tarefa = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Robôs");
-            
-        listaTarefa.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(listaTarefa);
+        label_lista_robo.setText("Robôs");
+        Set<Robot> robos = gridConfig1.getRobos();
+        //AbstractListModel
+        final String[] temp_robos = new String[robos.size()];
+        int i = 0;
+        for (Robot robo : robos) {
+            temp_robos[i] = robo.getId();
+            i++;
+        }
 
-
-        jLabel2.setText("Tarefas");
         listaRobo.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = temp_robos;
+            @Override
             public int getSize() { return strings.length; }
+            @Override
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(listaRobo);
+        listaRobo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scroll_lista_robo.setViewportView(listaRobo);
 
+        label_lista_tarefa.setText("Tarefas");
+         Set<Tarefa> tarefas = gridConfig1.getTarefas();
+        //AbstractListModel
+        final String[] temp_tarefas = new String[tarefas.size()];
+        i = 0;
+        for (Tarefa tarefa : tarefas) {
+            temp_tarefas[i] = tarefa.getNomeTask();
+            i++;
+        }
+        listaTarefa.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = temp_tarefas;
+            @Override
+            public int getSize() { return strings.length; }
+            @Override
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        listaTarefa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scroll_lista_tarefa.setViewportView(listaTarefa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,17 +88,16 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_lista_robo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_lista_tarefa))
                 .addContainerGap())
         );
-        
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -84,12 +106,12 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(label_lista_robo)
+                            .addComponent(label_lista_tarefa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 155, Short.MAX_VALUE))
         );
 
@@ -105,12 +127,12 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     private void initComponents() {
 
         gridConfig1 = new simulator.GridConfig();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll_lista_tarefa = new javax.swing.JScrollPane();
         listaTarefa = new javax.swing.JList();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        label_lista_robo = new javax.swing.JLabel();
+        scroll_lista_robo = new javax.swing.JScrollPane();
         listaRobo = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
+        label_lista_tarefa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,18 +141,19 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(listaTarefa);
+        scroll_lista_tarefa.setViewportView(listaTarefa);
 
-        jLabel1.setText("Robôs");
+        label_lista_robo.setText("Robôs");
 
         listaRobo.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(listaRobo);
+        listaRobo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scroll_lista_robo.setViewportView(listaRobo);
 
-        jLabel2.setText("Tarefas");
+        label_lista_tarefa.setText("Tarefas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,14 +161,14 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_lista_robo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_lista_tarefa))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,12 +179,12 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(label_lista_robo)
+                            .addComponent(label_lista_tarefa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 155, Short.MAX_VALUE))
         );
 
@@ -200,11 +223,11 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private simulator.GridConfig gridConfig1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label_lista_robo;
+    private javax.swing.JLabel label_lista_tarefa;
     private javax.swing.JList listaRobo;
     private javax.swing.JList listaTarefa;
+    private javax.swing.JScrollPane scroll_lista_robo;
+    private javax.swing.JScrollPane scroll_lista_tarefa;
     // End of variables declaration//GEN-END:variables
 }

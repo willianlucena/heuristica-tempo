@@ -39,16 +39,16 @@ class Util {
     static GridConfig bindConfig(
         javax.swing.JSpinner altura_y,
         javax.swing.JSpinner largura_x,
-        
+
         javax.swing.JSpinner qtd_robos,
         javax.swing.JSpinner qtd_tarefas,
-        
+
         org.jdesktop.swingx.JXTable tabela_robos,
         org.jdesktop.swingx.JXTable tabela_tarefas,
-        
+
         javax.swing.JCheckBox robos_random,
         javax.swing.JCheckBox tarefas_random) {
-        
+
         Integer x = (Integer) largura_x.value;
         Integer y = (Integer) altura_y.value;
 
@@ -96,18 +96,18 @@ class Util {
             }
         }
 
-        GridConfig grid = new GridConfig(x, y, 50);
+        GridConfig grid = new GridConfig(x, y, 20);
         grid.setLargura(x);
         grid.setAltura(y);
         grid.setQtdTarefas(qtdTarefas);
         grid.setQtdRobos(qtdRobos);
         grid.setRobosRandom(robosRandom);
-        grid.setTarefasRandom(tarefasRandom);   
+        grid.setTarefasRandom(tarefasRandom);
         grid.setRobos(listaRobos as Set);
         grid.setTarefas(listaTarefas as Set);
-        
+
         return grid;
-        
+
     }
 
 }
