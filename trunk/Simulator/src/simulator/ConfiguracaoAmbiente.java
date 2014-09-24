@@ -27,95 +27,25 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
      * @param gridConfig
      */
     public ConfiguracaoAmbiente(GridConfig gridConfig) {
-        initComponents(gridConfig);
+        Set<Robot> robos = gridConfig.getRobos();
+        Set<Tarefa> tarefas = gridConfig.getTarefas();
+        listaAtores = new String[robos.size() + tarefas.size()];
+        int i = 0;
+        for (Robot robo : robos) {
+            listaAtores[i] = robo.getId();
+            i++;
+        }
+
+        for (Tarefa tarefa : tarefas) {
+            listaAtores[i] = tarefa.getNomeTask();
+            i++;
+        }
+        //initComponents(gridConfig);
+        initComponents();
     }
 
     private void initComponents(GridConfig gridConfig) {
         gridConfig1 = gridConfig;
-
-        label_lista_robo = new javax.swing.JLabel();
-        listaRobo = new javax.swing.JList();
-        scroll_lista_robo = new javax.swing.JScrollPane();
-
-        label_lista_tarefa = new javax.swing.JLabel();
-        listaTarefa = new javax.swing.JList();
-        scroll_lista_tarefa = new javax.swing.JScrollPane();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        label_lista_robo.setText("Robôs");
-        Set<Robot> robos = gridConfig1.getRobos();
-        //AbstractListModel
-        final String[] temp_robos = new String[robos.size()];
-        int i = 0;
-        for (Robot robo : robos) {
-            temp_robos[i] = robo.getId();
-            i++;
-        }
-
-        listaRobo.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = temp_robos;
-            @Override
-            public int getSize() { return strings.length; }
-            @Override
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        listaRobo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scroll_lista_robo.setViewportView(listaRobo);
-
-        label_lista_tarefa.setText("Tarefas");
-         Set<Tarefa> tarefas = gridConfig1.getTarefas();
-        //AbstractListModel
-        final String[] temp_tarefas = new String[tarefas.size()];
-        i = 0;
-        for (Tarefa tarefa : tarefas) {
-            temp_tarefas[i] = tarefa.getNomeTask();
-            i++;
-        }
-        listaTarefa.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = temp_tarefas;
-            @Override
-            public int getSize() { return strings.length; }
-            @Override
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        listaTarefa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scroll_lista_tarefa.setViewportView(listaTarefa);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_lista_robo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_lista_tarefa))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_lista_robo)
-                            .addComponent(label_lista_tarefa))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 155, Short.MAX_VALUE))
-        );
-
-        pack();
     }
 
     /**
@@ -129,31 +59,24 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         gridConfig1 = new simulator.GridConfig();
         scroll_lista_tarefa = new javax.swing.JScrollPane();
         listaTarefa = new javax.swing.JList();
-        label_lista_robo = new javax.swing.JLabel();
-        scroll_lista_robo = new javax.swing.JScrollPane();
-        listaRobo = new javax.swing.JList();
         label_lista_tarefa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         listaTarefa.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+            @Override
+            public int getSize() { return listaAtores.length; }
+            @Override
+            public Object getElementAt(int i) { return listaAtores[i]; }
         });
+        listaTarefa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaTarefa.setDragEnabled(true);
+        listaTarefa.setVisibleRowCount(20);
         scroll_lista_tarefa.setViewportView(listaTarefa);
+        listaTarefa.getAccessibleContext().setAccessibleName("");
+        listaTarefa.getAccessibleContext().setAccessibleDescription("");
 
-        label_lista_robo.setText("Robôs");
-
-        listaRobo.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        listaRobo.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        scroll_lista_robo.setViewportView(listaRobo);
-
-        label_lista_tarefa.setText("Tarefas");
+        label_lista_tarefa.setText("Elementos para o ambiente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,13 +84,9 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_lista_robo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_lista_tarefa))
                 .addContainerGap())
         );
@@ -178,13 +97,9 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                     .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_lista_robo)
-                            .addComponent(label_lista_tarefa))
+                        .addComponent(label_lista_tarefa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scroll_lista_robo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(scroll_lista_tarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 155, Short.MAX_VALUE))
         );
 
@@ -223,11 +138,10 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private simulator.GridConfig gridConfig1;
-    private javax.swing.JLabel label_lista_robo;
     private javax.swing.JLabel label_lista_tarefa;
-    private javax.swing.JList listaRobo;
     private javax.swing.JList listaTarefa;
-    private javax.swing.JScrollPane scroll_lista_robo;
     private javax.swing.JScrollPane scroll_lista_tarefa;
     // End of variables declaration//GEN-END:variables
+
+    private String[] listaAtores;
 }
