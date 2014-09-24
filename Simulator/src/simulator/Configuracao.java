@@ -5,6 +5,8 @@
  */
 package simulator;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author willian
@@ -246,10 +248,10 @@ public class Configuracao extends javax.swing.JFrame {
 
         Object[][] linhas_robos = Util.montarTabelaRobos((Integer) qtd_robos.getValue());
         tabela_robos.setModel(new javax.swing.table.DefaultTableModel(
-            linhas_robos,
-            new String[]{
-                "", "Conhecimentos básicos", "Capacidades físicas"
-            }
+                linhas_robos,
+                new String[]{
+                    "", "Conhecimentos básicos", "Capacidades físicas"
+                }
         ) {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
@@ -258,10 +260,12 @@ public class Configuracao extends javax.swing.JFrame {
                 true, true, true
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
@@ -283,10 +287,10 @@ public class Configuracao extends javax.swing.JFrame {
         Object[][] linhas_tarefas = Util.montarTabelaTarefas((Integer) qtd_tarefas.getValue());
 
         tabela_tarefas.setModel(new javax.swing.table.DefaultTableModel(
-            linhas_tarefas,
-            new String[]{
-                "", "Conhecimentos básicos", "Capacidades físicas"
-            }
+                linhas_tarefas,
+                new String[]{
+                    "", "Conhecimentos básicos", "Capacidades físicas"
+                }
         ) {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class
@@ -295,10 +299,12 @@ public class Configuracao extends javax.swing.JFrame {
                 true, true, true
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
@@ -308,37 +314,21 @@ public class Configuracao extends javax.swing.JFrame {
     private void criarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarAmbienteActionPerformed
 
         GridConfig grid = Util.bindConfig(
-            altura_y,
-            largura_x,
-            
-            qtd_robos,
-            qtd_tarefas,
-            
-            tabela_robos,
-            tabela_tarefas,
-            
-            robos_random,
-            tarefas_random);
-        
-        //GridConfig grid = new GridConfig(3, 3, 50);
-        ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
-        config.setVisible(true);
-        
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new Configuracao().setVisible(true);
-//            }
-//        });
-/*
-        int confirm = JOptionPane.showOptionDialog(this,
-            "Are You Sure to Close this Application?",
-            "Exit Confirmation", JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, null, null);
-        if (confirm == JOptionPane.YES_OPTION) {
-            config.dispose();
+                altura_y,
+                largura_x,
+                qtd_robos,
+                qtd_tarefas,
+                tabela_robos,
+                tabela_tarefas,
+                robos_random,
+                tarefas_random);
+        if ((grid.getRobos().size() + grid.getTarefas().size()) > (grid.getLargura() * grid.getAltura())) {
+            JOptionPane.showMessageDialog(null, "A quantidade de robôs e tarefas é maior que o espaço reservado para a arena");
+        } else {
+            ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
+            config.setVisible(true);
+            JOptionPane.showMessageDialog(config, "Escolha o elemento a ser inserido no grid e clique em uma posição da matriz");
         }
-*/
     }//GEN-LAST:event_criarAmbienteActionPerformed
 
     /**
