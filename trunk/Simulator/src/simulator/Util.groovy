@@ -63,9 +63,9 @@ class Util {
         def listaRobos = []
         if (numeroLinhasR > 0) {
             (0..(numeroLinhasR - 1)).each { i ->
-                System.out.println("Nome robô: [$i][0] " + tabela_robos.model.getValueAt(i, 0)); //0 para nome robô
-                System.out.println("C robô: [$i][1] " + tabela_robos.model.getValueAt(i, 1)); //1 para conhecimentos básicos que possui
-                System.out.println("F robô: [$i][2] " + tabela_robos.model.getValueAt(i, 2)); //2 para habilidades físicas que possui
+                //System.out.println("Nome robô: [$i][0] " + tabela_robos.model.getValueAt(i, 0)); //0 para nome robô
+                //System.out.println("C robô: [$i][1] " + tabela_robos.model.getValueAt(i, 1)); //1 para conhecimentos básicos que possui
+                //System.out.println("F robô: [$i][2] " + tabela_robos.model.getValueAt(i, 2)); //2 para habilidades físicas que possui
 
                 String nomeRobo = tabela_robos.model.getValueAt(i, 0);
                 Robot r = new Robot(nomeRobo, true);
@@ -82,9 +82,9 @@ class Util {
         def listaTarefas = []
         if (numeroLinhasT > 0) {
             (0..(numeroLinhasT - 1)).each { i ->
-                System.out.println("Nome tarefa: [$i][0] " + tabela_tarefas.model.getValueAt(i, 0)); //0 para nome tarefa
-                System.out.println("c tarefa: [$i][1] " + tabela_tarefas.model.getValueAt(i, 1)); //1 para conhecimentos básicos necessários a realização da tarefa
-                System.out.println("f tarefa: [$i][2] " + tabela_tarefas.model.getValueAt(i, 2)); //2 para habilidades físicas necessárias a realização da tarefa
+                //System.out.println("Nome tarefa: [$i][0] " + tabela_tarefas.model.getValueAt(i, 0)); //0 para nome tarefa
+                //System.out.println("c tarefa: [$i][1] " + tabela_tarefas.model.getValueAt(i, 1)); //1 para conhecimentos básicos necessários a realização da tarefa
+                //System.out.println("f tarefa: [$i][2] " + tabela_tarefas.model.getValueAt(i, 2)); //2 para habilidades físicas necessárias a realização da tarefa
                 Tarefa t = new Tarefa();
                 String nomeTarefa = tabela_tarefas.model.getValueAt(i, 0);
                 String conhecimentos = tabela_tarefas.model.getValueAt(i, 1);

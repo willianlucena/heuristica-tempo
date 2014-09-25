@@ -329,6 +329,8 @@ public class Configuracao extends javax.swing.JFrame {
             config.setVisible(true);
             JOptionPane.showMessageDialog(config, "Escolha o elemento a ser inserido no grid e clique em uma posição da matriz");
         }
+        //ConfiguracaoAmbiente config = new ConfiguracaoAmbiente();
+        //config.setVisible(true);
     }//GEN-LAST:event_criarAmbienteActionPerformed
 
     /**
