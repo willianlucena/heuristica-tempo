@@ -6,12 +6,13 @@
 package simulator;
 
 import ch.aplu.jgamegrid.Actor;
+import ch.aplu.jgamegrid.GGMouse;
+import ch.aplu.jgamegrid.GGMouseListener;
 import ch.aplu.jgamegrid.Location;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,18 +20,22 @@ import java.util.TreeSet;
  *
  * @author extra
  */
-public class Robot extends Actor {
+public class Robot extends Actor implements GGMouseListener {
 
     String id; //nome robo
     boolean noSul = false;
     private boolean showId = false;
-    
+
     //propriedade presente no robo da heuristica
     private Set<String> sabeRobot = new TreeSet<>();
-	private Set<String> fazRobot = new TreeSet<>();
-	private Integer peso = 0;
-	private Integer tempoRobot = 0;
-	private Integer tempoTrabalhoRobot = 0;
+    private Set<String> fazRobot = new TreeSet<>();
+    private Integer peso = 0;
+    private Integer tempoRobot = 0;
+    private Integer tempoTrabalhoRobot = 0;
+
+    //auxiliar na inserção do robo no ambiente no momento da configuracao
+    private Location lastLocation;
+    private boolean isDragging = false;
 
     public Robot(String id, boolean showId) {
         this(id);
@@ -38,9 +43,10 @@ public class Robot extends Actor {
     }
 
     public Robot(String id) {
-        super(true, Robotfill.getFill());
+        //super(true, Robotfill.getFill());
+        super("sprite/robot_0.gif");
         this.id = id;
-        this.setSlowDown(new Random().nextInt(2));
+        //this.setSlowDown(new Random().nextInt(2));
     }
 
     public String getId() {
@@ -179,7 +185,34 @@ public class Robot extends Actor {
     public void setTempoTrabalhoRobot(Integer tempoTrabalhoRobot) {
         this.tempoTrabalhoRobot = tempoTrabalhoRobot;
     }
-    
-    
-    
+
+    @Override
+    public boolean mouseEvent(GGMouse mouse) {
+
+        Location location = gameGrid.toLocationInGrid(mouse.getX(), mouse.getY());
+        switch (mouse.getEvent()) {
+            case GGMouse.lPress:
+                if (gameGrid.getOneActorAt(location) == this) // Must restrict to current instance
+                {
+                    isDragging = true;
+                }
+                lastLocation = location.clone();
+                break;
+            case GGMouse.lDrag:
+                if (isDragging && gameGrid.isEmpty(location)) // Prevent to drag at occupied location
+                {
+                    setLocation(location);
+                    lastLocation = location.clone();
+                }
+                break;
+            case GGMouse.lRelease:
+                if (isDragging) {
+                    setLocation(lastLocation);
+                    isDragging = false;
+                }
+                break;
+        }
+        return false;  // Don't consume the event, other listener must be notified
+    }
+
 }

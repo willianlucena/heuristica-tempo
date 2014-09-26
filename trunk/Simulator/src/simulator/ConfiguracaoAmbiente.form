@@ -135,6 +135,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Rob&#xf4;"/>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radio_robosStateChanged"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radio_robosMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radio_robosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radio_tarefas">
           <Properties>
@@ -143,6 +148,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tarefas"/>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radio_tarefasStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radio_obstaculos">
           <Properties>
@@ -151,6 +159,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Obst&#xe1;culos"/>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radio_obstaculosStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="img_robo">
         </Component>

@@ -10,6 +10,7 @@ import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.GGMouse;
 import ch.aplu.jgamegrid.GGMouseListener;
 import ch.aplu.jgamegrid.GameGrid;
+import ch.aplu.jgamegrid.Location;
 import java.awt.Color;
 import java.util.Set;
 import java.util.TreeSet;
@@ -22,36 +23,49 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     private Integer largura;
     private Integer altura;
-    
+
     private Integer qtdRobos;
     private Integer qtdTarefas;
-    
+
     private Boolean robosRandom;
     private Boolean tarefasRandom;
-    
+
     private Set<Tarefa> tarefas = new TreeSet<>();
     private Set<Robot> robos = new TreeSet<>();
     
+    private boolean robo_selected = false;
+    private boolean tarefa_selected = false;
+    private boolean obstaculo_selected = false;
+
     //private 
-    
     public GridConfig() {
         super(30, 30, 20, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
     }
-    
+
     public GridConfig(int nbHorzCells, int nbVertCells, int cellSize) {
         super(nbHorzCells, nbVertCells, cellSize, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
+        addMouseListener(this, GGMouse.lPress);
     }
-   
+
     @Override
     public int collide(Actor actor, Actor actor1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean mouseEvent(GGMouse ggm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean mouseEvent(GGMouse mouse) {
+        Location location = toLocationInGrid(mouse.getX(), mouse.getY());
+        if (isEmpty(location)) {// Do not create an actor if cell is occupied
+            Tarefa robot = new Tarefa();
+            addActor(robot, location);
+            addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);           
+            System.out.println("robo : " + robo_selected);
+            System.out.println("tarefa : " + tarefa_selected);
+            System.out.println("obstaculo : " + obstaculo_selected);
+        }
+        return false; // Don't consume the event, other listeners must be notified
     }
 
     public Integer getLargura() {
@@ -116,6 +130,30 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     public void setRobos(Set<Robot> robos) {
         this.robos = robos;
+    }
+
+    public boolean isRobo_selected() {
+        return robo_selected;
+    }
+
+    public void setRobo_selected(boolean robo_selected) {
+        this.robo_selected = robo_selected;
+    }
+
+    public boolean isTarefa_selected() {
+        return tarefa_selected;
+    }
+
+    public void setTarefa_selected(boolean tarefa_selected) {
+        this.tarefa_selected = tarefa_selected;
+    }
+
+    public boolean isObstaculo_selected() {
+        return obstaculo_selected;
+    }
+
+    public void setObstaculo_selected(boolean obstaculo_selected) {
+        this.obstaculo_selected = obstaculo_selected;
     }
 
 }
