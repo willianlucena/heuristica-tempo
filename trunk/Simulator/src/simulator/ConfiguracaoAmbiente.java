@@ -5,12 +5,7 @@
  */
 package simulator;
 
-import java.awt.event.ActionEvent;
-import java.util.Enumeration;
 import java.util.Set;
-import javax.swing.AbstractButton;
-import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 /**
  *
@@ -323,16 +318,6 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     private void radio_robosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radio_robosItemStateChanged
         System.out.println("item changed");
     }//GEN-LAST:event_radio_robosItemStateChanged
-
-//    public void actionPerformed() {
-//        Enumeration<AbstractButton> allRadioButton = grupoBotoes.getElements();
-//        while (allRadioButton.hasMoreElements()) {
-//            JRadioButton temp = (JRadioButton) allRadioButton.nextElement();
-//            if (temp.isSelected()) {
-//                JOptionPane.showMessageDialog(null, "You select : " + temp.getText());
-//            }
-//        }
-//    }
 
     /**
      * @param args the command line arguments
