@@ -32,12 +32,12 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     private Set<Tarefa> tarefas = new TreeSet<>();
     private Set<Robot> robos = new TreeSet<>();
-    
+
     private boolean robo_selected = false;
     private boolean tarefa_selected = false;
     private boolean obstaculo_selected = false;
 
-    //private 
+    //private
     public GridConfig() {
         super(30, 30, 20, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
@@ -60,7 +60,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         if (isEmpty(location)) {// Do not create an actor if cell is occupied
             Tarefa robot = new Tarefa();
             addActor(robot, location);
-            addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);           
+            addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
             System.out.println("robo : " + robo_selected);
             System.out.println("tarefa : " + tarefa_selected);
             System.out.println("obstaculo : " + obstaculo_selected);
