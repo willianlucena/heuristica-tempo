@@ -37,10 +37,17 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     private boolean tarefa_selected = false;
     private boolean obstaculo_selected = false;
 
-    //private
+    public static void main(String[] args) {
+        new GridConfig();
+    }
+    
     public GridConfig() {
         super(30, 30, 20, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
+        //setTitle("Click to create a honey pot, press and drag to move it");
+        addMouseListener(this, GGMouse.lPress);
+        show();
+        doRun();
     }
 
     public GridConfig(int nbHorzCells, int nbVertCells, int cellSize) {
@@ -61,13 +68,13 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
             Tarefa robot = new Tarefa();
             addActor(robot, location);
             addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
-            System.out.println("robo : " + robo_selected);
-            System.out.println("tarefa : " + tarefa_selected);
-            System.out.println("obstaculo : " + obstaculo_selected);
+//            System.out.println("robo : " + robo_selected);
+//            System.out.println("tarefa : " + tarefa_selected);
+//            System.out.println("obstaculo : " + obstaculo_selected);
         }
         return false; // Don't consume the event, other listeners must be notified
     }
-
+ 
     public Integer getLargura() {
         return largura;
     }
