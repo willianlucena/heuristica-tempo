@@ -65,9 +65,20 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     public boolean mouseEvent(GGMouse mouse) {
         Location location = toLocationInGrid(mouse.getX(), mouse.getY());
         if (isEmpty(location)) {// Do not create an actor if cell is occupied
-            Tarefa robot = new Tarefa();
-            addActor(robot, location);
-            addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+            if (robo_selected) {
+                Robot robot = new Robot("id");
+                addActor(robot, location);
+                addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+            } else if (tarefa_selected) {
+                Tarefa tarefa = new Tarefa();
+                addActor(tarefa, location);
+                addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+            } else if (obstaculo_selected) {
+                Obstaculo obstaculo = new Obstaculo();
+                addActor(obstaculo, location);
+                addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+            }
+            
 //            System.out.println("robo : " + robo_selected);
 //            System.out.println("tarefa : " + tarefa_selected);
 //            System.out.println("obstaculo : " + obstaculo_selected);
