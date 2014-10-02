@@ -44,7 +44,7 @@ public class Robot extends Actor implements GGMouseListener {
 
     public Robot(String id) {
         //super(true, Robotfill.getFill());
-        super("sprite/robot_0.gif");
+        super("sprite/robot.gif");
         this.id = id;
         //this.setSlowDown(new Random().nextInt(2));
     }
