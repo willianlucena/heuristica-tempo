@@ -188,7 +188,6 @@ public class Robot extends Actor implements GGMouseListener {
 
     @Override
     public boolean mouseEvent(GGMouse mouse) {
-
         Location location = gameGrid.toLocationInGrid(mouse.getX(), mouse.getY());
         switch (mouse.getEvent()) {
             case GGMouse.lPress:
@@ -212,7 +211,7 @@ public class Robot extends Actor implements GGMouseListener {
                 }
                 break;
         }
-        return false;  // Don't consume the event, other listener must be notified
+        return false; // Don't consume the event, other listener must be notified
     }
 
 }
