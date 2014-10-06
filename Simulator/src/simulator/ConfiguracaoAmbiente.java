@@ -5,7 +5,7 @@
  */
 package simulator;
 
-import java.util.Set;
+import javax.swing.JLabel;
 
 /**
  *
@@ -28,10 +28,8 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
      * @param gridConfig
      */
     public ConfiguracaoAmbiente(GridConfig gridConfig) {
-        Set<Robot> robos = gridConfig.getRobos();
-        qtdRobos = robos.size();
-        Set<Tarefa> tarefas = gridConfig.getTarefas();
-        qtdTarefas = tarefas.size();
+        qtdRobos = gridConfig.getQtdRobos();
+        qtdTarefas = gridConfig.getQtdTarefas();
         initComponents(gridConfig);
         //initComponents();
     }
@@ -146,7 +144,6 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configurar Ambiente");
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(2048, 2048));
         setResizable(false);
 
         label_lista_tarefa.setText("Elementos para o ambiente");
@@ -273,6 +270,47 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     private javax.swing.JRadioButton radio_tarefas;
     // End of variables declaration//GEN-END:variables
 
-    private final int qtdRobos;
-    private final int qtdTarefas;
+    private int qtdRobos;
+    private int qtdTarefas;
+
+    public int getQtdRobos() {
+        return qtdRobos;
+    }
+
+    public void setQtdRobos(int qtd) {
+        qtdRobos = qtd;
+    }
+
+    public int getQtdTarefas() {
+        return qtdTarefas;
+    }
+
+    public void setQtdTarefas(int qtd) {
+        qtdTarefas = qtd;
+    }
+
+    public JLabel getLabel_lista_tarefa() {
+        return label_lista_tarefa;
+    }
+
+    public void setLabel_lista_tarefa(JLabel label_lista_tarefa) {
+        this.label_lista_tarefa = label_lista_tarefa;
+    }
+
+    public JLabel getLabel_qtdRobo() {
+        return label_qtdRobo;
+    }
+
+    public void setLabel_qtdRobo(JLabel label_qtdRobo) {
+        this.label_qtdRobo = label_qtdRobo;
+    }
+
+    public JLabel getLabel_qtdTarefa() {
+        return label_qtdTarefa;
+    }
+
+    public void setLabel_qtdTarefa(JLabel label_qtdTarefa) {
+        this.label_qtdTarefa = label_qtdTarefa;
+    }
+
 }
