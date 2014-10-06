@@ -12,8 +12,9 @@ import ch.aplu.jgamegrid.GGMouseListener;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 import java.awt.Color;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,17 +31,19 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     private Boolean robosRandom;
     private Boolean tarefasRandom;
 
-    private Set<Tarefa> tarefas = new TreeSet<>();
-    private Set<Robot> robos = new TreeSet<>();
+    private List<Tarefa> tarefas = new ArrayList<>();
+    private List<Robot> robos = new ArrayList<>();
 
     private boolean robo_selected = false;
     private boolean tarefa_selected = false;
     private boolean obstaculo_selected = false;
+    public int contDeployRobot = 0;
+    public int contDeployTask = 0;
 
     public static void main(String[] args) {
         new GridConfig();
     }
-    
+
     public GridConfig() {
         super(30, 30, 20, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
@@ -66,26 +69,50 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         Location location = toLocationInGrid(mouse.getX(), mouse.getY());
         if (isEmpty(location)) {// Do not create an actor if cell is occupied
             if (robo_selected) {
-                Robot robot = new Robot("id");
-                addActor(robot, location);
-                addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                if (contDeployRobot < qtdRobos) {
+                    Robot robot = robos.get(contDeployRobot);
+                    contDeployRobot++;
+                    addActor(robot, location);
+                    addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                } else {
+                    ArrayList<Actor> atores = getActors(Robot.class);
+                    for (Actor at: atores) {
+                        Robot a = (Robot) at;
+                        System.out.println(a.getId());
+                        System.out.println(a.getSabeRobot());
+                        System.out.println(a.getFazRobot());
+                    }
+                    JOptionPane.showMessageDialog(this, "Quantidade de robôs no limite. Para mudar a localização do robô clique sobre um a sua escolha e arraste para o local desejado.");
+                }
             } else if (tarefa_selected) {
-                Tarefa tarefa = new Tarefa();
-                addActor(tarefa, location);
-                addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                if (contDeployTask < qtdTarefas) {
+                    Tarefa tarefa = tarefas.get(contDeployTask);
+                    contDeployTask++;
+                    addActor(tarefa, location);
+                    addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                } else {
+                    ArrayList<Actor> atores = getActors(Tarefa.class);
+                    for (Actor at: atores) {
+                        Tarefa a = (Tarefa) at;
+                        System.out.println(a.getNomeTask());
+                        System.out.println(a.getSabeTask());
+                        System.out.println(a.getFazTask());
+                    }
+                    JOptionPane.showMessageDialog(this, "Quantidade de tarefas no limite. Para mudar a localização da tarefa clique sobre um a sua escolha e arraste para o local desejado.");
+                }
             } else if (obstaculo_selected) {
                 Obstaculo obstaculo = new Obstaculo();
                 addActor(obstaculo, location);
                 addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
             }
-            
+            //TODO descrementar contador.
 //            System.out.println("robo : " + robo_selected);
 //            System.out.println("tarefa : " + tarefa_selected);
 //            System.out.println("obstaculo : " + obstaculo_selected);
         }
         return false; // Don't consume the event, other listeners must be notified
     }
- 
+
     public Integer getLargura() {
         return largura;
     }
@@ -134,19 +161,19 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         this.tarefasRandom = tarefasRandom;
     }
 
-    public Set<Tarefa> getTarefas() {
+    public List<Tarefa> getTarefas() {
         return tarefas;
     }
 
-    public void setTarefas(Set<Tarefa> tarefas) {
+    public void setTarefas(List<Tarefa> tarefas) {
         this.tarefas = tarefas;
     }
 
-    public Set<Robot> getRobos() {
+    public List<Robot> getRobos() {
         return robos;
     }
 
-    public void setRobos(Set<Robot> robos) {
+    public void setRobos(List<Robot> robos) {
         this.robos = robos;
     }
 

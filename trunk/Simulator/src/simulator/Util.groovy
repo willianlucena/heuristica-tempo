@@ -71,8 +71,10 @@ class Util {
                 Robot r = new Robot(nomeRobo, true);
                 String conhecimentos = tabela_robos.model.getValueAt(i, 1);
                 String habilidades = tabela_robos.model.getValueAt(i, 2);
-                r.setSabeRobot(conhecimentos?.split(","));
-                r.setFazRobot(habilidades?.split(","));
+                List<String> c = (conhecimentos?.split(",") as List<String>) ?: [];
+                if (c.size() > 0) r.setSabeRobot(new TreeSet<>(c));
+                List<String> f = (habilidades?.split(",") as List<String>) ?: [];
+                if (f.size() > 0) r.setFazRobot(new TreeSet<>(f));
                 listaRobos.add(r);
             }
         }
@@ -90,8 +92,10 @@ class Util {
                 String conhecimentos = tabela_tarefas.model.getValueAt(i, 1);
                 String habilidades = tabela_tarefas.model.getValueAt(i, 2);
                 t.setNomeTask(nomeTarefa);
-                t.setSabeTask(conhecimentos?.split(","));
-                t.setFazTask(habilidades?.split(","));
+                List<String> c = (conhecimentos?.split(",") as List<String>) ?: [];
+                if (c.size() > 0) t.setSabeTask(new TreeSet<>(c));
+                List<String> f = (habilidades?.split(",") as List<String>) ?: [];
+                if (f.size() > 0) t.setFazTask(new TreeSet<>(f));
                 listaTarefas.add(t);
             }
         }
@@ -99,12 +103,12 @@ class Util {
         GridConfig grid = new GridConfig(x, y, 20);
         grid.setLargura(x);
         grid.setAltura(y);
-        grid.setQtdTarefas(qtdTarefas);
-        grid.setQtdRobos(qtdRobos);
+        grid.setQtdTarefas(listaTarefas.size());
+        grid.setQtdRobos(listaRobos.size());
         grid.setRobosRandom(robosRandom);
         grid.setTarefasRandom(tarefasRandom);
-        grid.setRobos(listaRobos as Set);
-        grid.setTarefas(listaTarefas as Set);
+        grid.setRobos(listaRobos);
+        grid.setTarefas(listaTarefas);
 
         return grid;
 
