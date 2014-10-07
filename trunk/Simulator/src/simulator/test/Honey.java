@@ -14,7 +14,7 @@ public class Honey extends Actor implements GGMouseListener {
     private boolean isDragging = false;
 
     public Honey() {
-        super("sprite/honey.gif");
+        super("sprites/honey.gif");
     }
 
     @Override
