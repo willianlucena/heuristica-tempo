@@ -104,6 +104,10 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                 Obstaculo obstaculo = new Obstaculo();
                 addActor(obstaculo, location);
                 addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+            } else {
+//                Obstaculo obstaculo = new Obstaculo();
+//                addActor(obstaculo, location);
+//                addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
             }
             //TODO descrementar contador.
 //            System.out.println("robo : " + robo_selected);

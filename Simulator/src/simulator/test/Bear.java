@@ -10,7 +10,7 @@ public class Bear extends Actor {
     private Class clazz;
 
     public Bear(Class clazz) {
-        super("sprite/bear.gif");
+        super("sprites/bear.gif");
         this.clazz = clazz;
     }
 
