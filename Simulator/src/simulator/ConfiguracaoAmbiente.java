@@ -269,7 +269,7 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_obstaculosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        gridConfig1.doRun();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void changeRadios() {
