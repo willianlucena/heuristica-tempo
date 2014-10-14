@@ -45,7 +45,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     }
 
     public GridConfig() {
-        super(30, 30, 20, Color.BLACK, true);
+        super(5, 5, 20, Color.BLACK, true);
         this.setBgColor(Color.WHITE);
         //setTitle("Click to create a honey pot, press and drag to move it");
         addMouseListener(this, GGMouse.lPress);
@@ -60,8 +60,22 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     }
 
     @Override
-    public int collide(Actor actor, Actor actor1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int collide(Actor a, Actor b) {
+        if (a instanceof Robot) {
+            System.out.print("o robo " + ((Robot) a).getId());
+        }
+        if (b instanceof Robot) {
+            System.out.println(" colidiu com o robo " + ((Robot) b).getId());
+        }
+        double dir1 = a.getDirection();
+        double dir2 = b.getDirection();
+        int sd1 = a.getSlowDown();
+        int sd2 = b.getSlowDown();
+        a.setDirection(dir2);
+        a.setSlowDown(sd2);
+        b.setDirection(dir1);
+        b.setSlowDown(sd1);
+        return 5;  // Wait a moment until collision is rearmed
     }
 
     @Override
@@ -76,7 +90,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
                 } else {
                     ArrayList<Actor> atores = getActors(Robot.class);
-                    for (Actor at: atores) {
+                    for (Actor at : atores) {
                         Robot a = (Robot) at;
                         System.out.println(a.getId());
                         System.out.println(a.getSabeRobot());
@@ -92,7 +106,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
                 } else {
                     ArrayList<Actor> atores = getActors(Tarefa.class);
-                    for (Actor at: atores) {
+                    for (Actor at : atores) {
                         Tarefa a = (Tarefa) at;
                         System.out.println(a.getNomeTask());
                         System.out.println(a.getSabeTask());

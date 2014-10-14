@@ -21,7 +21,7 @@ public class Ambiente extends GameGrid implements GGActorCollisionListener {
     private static final Color ambienteColor = Color.WHITE;
 
     public Ambiente() {
-        super(30, 30, 20, Color.RED, true);
+        super(5, 5, 20, Color.RED, true);
         this.setBgColor(ambienteColor);
     }
 
