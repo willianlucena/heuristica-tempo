@@ -12,6 +12,7 @@ import ch.aplu.jgamegrid.GGMouseListener;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 import java.awt.Color;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -67,6 +68,12 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         if (b instanceof Robot) {
             System.out.println(" colidiu com o robo " + ((Robot) b).getId());
         }
+        if (b instanceof Tarefa) {
+            System.out.println(" encontrou a tarefa " + ((Tarefa) b).getNomeTask());
+        }
+        if (b instanceof Obstaculo) {
+            System.out.println(" colidiu com um obstáculo");
+        }
         double dir1 = a.getDirection();
         double dir2 = b.getDirection();
         int sd1 = a.getSlowDown();
@@ -88,6 +95,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     contDeployRobot++;
                     addActor(robot, location);
                     addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                    robot.setCollisionCircle(new Point(0, 0), 5);
+                    robot.addActorCollisionListener(this);
                 } else {
                     ArrayList<Actor> atores = getActors(Robot.class);
                     for (Actor at : atores) {
@@ -104,6 +113,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     contDeployTask++;
                     addActor(tarefa, location);
                     addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                    tarefa.setCollisionCircle(new Point(0, 0), 5);
+                    tarefa.addActorCollisionListener(this);
                 } else {
                     ArrayList<Actor> atores = getActors(Tarefa.class);
                     for (Actor at : atores) {
@@ -118,6 +129,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                 Obstaculo obstaculo = new Obstaculo();
                 addActor(obstaculo, location);
                 addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+                obstaculo.setCollisionCircle(new Point(0, 0), 5);
+                obstaculo.addActorCollisionListener(this);
             } else {
 //                Obstaculo obstaculo = new Obstaculo();
 //                addActor(obstaculo, location);
