@@ -74,15 +74,14 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         if (b instanceof Obstaculo) {
             System.out.println(" colidiu com um obstáculo");
         }
-        double dir1 = a.getDirection();
-        double dir2 = b.getDirection();
-        int sd1 = a.getSlowDown();
-        int sd2 = b.getSlowDown();
-        a.setDirection(dir2);
-        a.setSlowDown(sd2);
-        b.setDirection(dir1);
-        b.setSlowDown(sd1);
+        mudarDirecao(a);
+        mudarDirecao(b);
         return 5;  // Wait a moment until collision is rearmed
+    }
+
+    public void mudarDirecao(Actor a) {
+        a.turn(180);
+        a.setHorzMirror(!a.isHorzMirror());
     }
 
     @Override
@@ -113,8 +112,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     contDeployTask++;
                     addActor(tarefa, location);
                     addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
-                    tarefa.setCollisionCircle(new Point(0, 0), 5);
-                    tarefa.addActorCollisionListener(this);
+//                    tarefa.setCollisionCircle(new Point(0, 0), 5);
+//                    tarefa.addActorCollisionListener(this);
                 } else {
                     ArrayList<Actor> atores = getActors(Tarefa.class);
                     for (Actor at : atores) {
@@ -129,8 +128,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                 Obstaculo obstaculo = new Obstaculo();
                 addActor(obstaculo, location);
                 addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
-                obstaculo.setCollisionCircle(new Point(0, 0), 5);
-                obstaculo.addActorCollisionListener(this);
+//                obstaculo.setCollisionCircle(new Point(0, 0), 5);
+//                obstaculo.addActorCollisionListener(this);
             } else {
 //                Obstaculo obstaculo = new Obstaculo();
 //                addActor(obstaculo, location);
@@ -142,6 +141,23 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 //            System.out.println("obstaculo : " + obstaculo_selected);
         }
         return false; // Don't consume the event, other listeners must be notified
+    }
+
+    public void addRoboRandom(Robot robot) {
+        addActor(robot, getRandomEmptyLocation());
+        addMouseListener(robot, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+        robot.setCollisionCircle(new Point(0, 0), 5);
+        robot.addActorCollisionListener(this);
+    }
+    
+    public void addTarefaRandom(Tarefa tarefa) {
+        addActor(tarefa, getRandomEmptyLocation());
+        addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
+    }
+    
+     public void addObstaculoRandom(Obstaculo obstaculo) {
+        addActor(obstaculo, getRandomEmptyLocation());
+        addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
     }
 
     public Integer getLargura() {
@@ -232,4 +248,19 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
         this.obstaculo_selected = obstaculo_selected;
     }
 
+    public int getContDeployRobot() {
+        return contDeployRobot;
+    }
+
+    public void setContDeployRobot(int contDeployRobot) {
+        this.contDeployRobot = contDeployRobot;
+    }
+
+    public int getContDeployTask() {
+        return contDeployTask;
+    }
+
+    public void setContDeployTask(int contDeployTask) {
+        this.contDeployTask = contDeployTask;
+    }
 }

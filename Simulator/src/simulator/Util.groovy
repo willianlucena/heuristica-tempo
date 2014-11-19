@@ -6,6 +6,8 @@
 
 package simulator
 
+import java.awt.Point
+
 /**
  *
  * @author willian
@@ -105,10 +107,33 @@ class Util {
         grid.setAltura(y);
         grid.setQtdTarefas(listaTarefas.size());
         grid.setQtdRobos(listaRobos.size());
-        grid.setRobosRandom(robosRandom);
-        grid.setTarefasRandom(tarefasRandom);
+        //grid.setRobosRandom(robosRandom);
+        //grid.setTarefasRandom(tarefasRandom);
         grid.setRobos(listaRobos);
         grid.setTarefas(listaTarefas);
+        
+        if (robosRandom) {
+            for (int i = 0; i < grid.getQtdRobos(); i++) {
+                Robot robot = listaRobos.get(i);
+                grid.addRoboRandom(robot);
+            }
+            grid.setContDeployRobot(grid.getQtdRobos());
+        }
+        
+        if (tarefasRandom) {
+            for (int i = 0; i < grid.getQtdTarefas(); i++) {
+                Tarefa tarefa = listaTarefas.get(i);
+                grid.addTarefaRandom(tarefa);
+            }
+            grid.setContDeployTask(grid.getQtdTarefas());
+        }
+        
+//        if (obstaculosRandom) {
+//            for (int i = 0; i < grid.getQtdObstaculos(); i++) {
+//                grid.addObstaculoRandom(new Obstaculo());
+//            }
+//            grid.setContDeployObstaculo(grid.getQtdObstaculos());
+//        }
 
         return grid;
 

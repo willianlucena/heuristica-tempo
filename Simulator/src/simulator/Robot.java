@@ -52,8 +52,11 @@ public class Robot extends Actor implements GGMouseListener {
     public String getId() {
         return id;
     }
-
+      
     public void varredura() {
+        Location location = getNextMoveLocation();
+        //location
+       
         if (isMoveValid()) {
             move();
         } else {
@@ -211,6 +214,7 @@ public class Robot extends Actor implements GGMouseListener {
                 }
                 break;
         }
+        gameGrid.refresh();
         return false; // Don't consume the event, other listener must be notified
     }
 

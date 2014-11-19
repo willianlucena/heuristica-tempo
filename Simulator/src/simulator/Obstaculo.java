@@ -49,6 +49,7 @@ public class Obstaculo extends Actor implements GGMouseListener {
                 }
                 break;
         }
+        gameGrid.refresh();
         return false; // Don't consume the event, other listener must be notified
     }
 }
