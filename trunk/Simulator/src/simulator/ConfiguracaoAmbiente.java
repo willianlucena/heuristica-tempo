@@ -284,6 +284,13 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                     ator.addCollisionActor(collider);
                 }
             }
+            
+            for (int k = 0; k < gridConfig1.getActors(Obstaculo.class).size(); k++) {
+                Actor collider = gridConfig1.getActors(Obstaculo.class).get(k);
+                if (ator != collider) {
+                    ator.addCollisionActor(collider);
+                }
+            }
         }
         gridConfig1.doRun();
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -328,6 +328,13 @@ public class Configuracao extends javax.swing.JFrame {
         } else {
             ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
             config.setVisible(true);
+            //grid.getRobosRandom();
+            //grid.getTarefasRandom();
+            //        for (int i = 0; i < 10; i++)
+//        addActor(new Leaf(), getRandomEmptyLocation());
+        
+            
+            
             JOptionPane.showMessageDialog(config, "Escolha o elemento a ser inserido no grid e clique em uma posição da matriz");
         }
         //ConfiguracaoAmbiente config = new ConfiguracaoAmbiente();
