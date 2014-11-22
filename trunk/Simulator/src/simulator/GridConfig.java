@@ -112,8 +112,6 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                     contDeployTask++;
                     addActor(tarefa, location);
                     addMouseListener(tarefa, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
-//                    tarefa.setCollisionCircle(new Point(0, 0), 5);
-//                    tarefa.addActorCollisionListener(this);
                 } else {
                     ArrayList<Actor> atores = getActors(Tarefa.class);
                     for (Actor at : atores) {
@@ -128,17 +126,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
                 Obstaculo obstaculo = new Obstaculo();
                 addActor(obstaculo, location);
                 addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
-//                obstaculo.setCollisionCircle(new Point(0, 0), 5);
-//                obstaculo.addActorCollisionListener(this);
-            } else {
-//                Obstaculo obstaculo = new Obstaculo();
-//                addActor(obstaculo, location);
-//                addMouseListener(obstaculo, GGMouse.lPress | GGMouse.lDrag | GGMouse.lRelease);
             }
-            //TODO descrementar contador.
-//            System.out.println("robo : " + robo_selected);
-//            System.out.println("tarefa : " + tarefa_selected);
-//            System.out.println("obstaculo : " + obstaculo_selected);
         }
         return false; // Don't consume the event, other listeners must be notified
     }
