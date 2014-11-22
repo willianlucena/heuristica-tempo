@@ -6,6 +6,7 @@
 package simulator;
 
 import ch.aplu.jgamegrid.Actor;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 
 /**
@@ -270,27 +271,12 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_obstaculosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (int i = 0; i < gridConfig1.getActors(Robot.class).size(); i++) {
-            Actor ator = gridConfig1.getActors(Robot.class).get(i);
-            for (int k = 0; k < gridConfig1.getActors(Robot.class).size(); k++) {
-                Actor collider = gridConfig1.getActors(Robot.class).get(k);
-                if (ator != collider) {
-                    ator.addCollisionActor(collider);
-                }
-            }
-            for (int k = 0; k < gridConfig1.getActors(Tarefa.class).size(); k++) {
-                Actor collider = gridConfig1.getActors(Tarefa.class).get(k);
-                if (ator != collider) {
-                    ator.addCollisionActor(collider);
-                }
-            }
-            
-            for (int k = 0; k < gridConfig1.getActors(Obstaculo.class).size(); k++) {
-                Actor collider = gridConfig1.getActors(Obstaculo.class).get(k);
-                if (ator != collider) {
-                    ator.addCollisionActor(collider);
-                }
-            }
+        for (Actor ator : gridConfig1.getActors(Robot.class)) {
+            ArrayList robos = gridConfig1.getActors(Robot.class);
+            robos.remove(ator);
+            ator.addCollisionActors(robos);
+            ator.addCollisionActors(gridConfig1.getActors(Tarefa.class));
+            ator.addCollisionActors(gridConfig1.getActors(Obstaculo.class));
         }
         gridConfig1.doRun();
     }//GEN-LAST:event_jButton1ActionPerformed
