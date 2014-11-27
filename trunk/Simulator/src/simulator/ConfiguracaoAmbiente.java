@@ -6,6 +6,7 @@
 package simulator;
 
 import ch.aplu.jgamegrid.Actor;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
@@ -36,32 +37,29 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         //initComponents();
     }
 
-    private void initComponents(GridConfig gridConfig) {
-        gridConfig1 = gridConfig;
+    private void initComponents(GridConfig grid) {
+        gridConfig = grid;
+        getContentPane().add(gridConfig, BorderLayout.NORTH);
 
         grupoBotao = new javax.swing.ButtonGroup();
-        label_lista_tarefa = new javax.swing.JLabel();
-        radio_robos = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
         radio_tarefas = new javax.swing.JRadioButton();
-        radio_obstaculos = new javax.swing.JRadioButton();
+        label_lista_tarefa = new javax.swing.JLabel();
+        botaoStep = new javax.swing.JButton();
+        botaoReset = new javax.swing.JButton();
         label_qtdRobo = new javax.swing.JLabel();
+        botaoRun = new javax.swing.JButton();
+        radio_robos = new javax.swing.JRadioButton();
+        radio_obstaculos = new javax.swing.JRadioButton();
         label_qtdTarefa = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Configurar Ambiente");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("H-CT com Obstáculos");
         setAlwaysOnTop(true);
-        setResizable(false);
+        setMaximumSize(null);
 
-        label_lista_tarefa.setText("Elementos para o ambiente");
-
-        grupoBotao.add(radio_robos);
-        radio_robos.setText("Robô");
-        radio_robos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radio_robosActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grupoBotao.add(radio_tarefas);
         radio_tarefas.setText("Tarefas");
@@ -70,6 +68,46 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                 radio_tarefasActionPerformed(evt);
             }
         });
+        jPanel1.add(radio_tarefas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, -1));
+
+        label_lista_tarefa.setText("Elementos para o ambiente");
+        jPanel1.add(label_lista_tarefa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        botaoStep.setText("Passo");
+        botaoStep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoStepActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoStep, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 158, 75, -1));
+
+        botaoReset.setText("Resetar");
+        botaoReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoResetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 187, 75, -1));
+
+        label_qtdRobo.setText(qtdRobos + "");
+        jPanel1.add(label_qtdRobo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 36, 20, 25));
+
+        botaoRun.setText("Começar");
+        botaoRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRunActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 129, -1, -1));
+
+        grupoBotao.add(radio_robos);
+        radio_robos.setText("Robô");
+        radio_robos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio_robosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radio_robos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 37, -1, -1));
 
         grupoBotao.add(radio_obstaculos);
         radio_obstaculos.setText("Obstáculos");
@@ -78,104 +116,69 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                 radio_obstaculosActionPerformed(evt);
             }
         });
-
-        label_qtdRobo.setText(qtdRobos + "");
+        jPanel1.add(radio_obstaculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, -1, -1));
 
         label_qtdTarefa.setText(qtdTarefas + "");
+        jPanel1.add(label_qtdTarefa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 67, 20, 25));
 
-        jButton1.setText("Começar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 247, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2.add(gridConfig);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radio_tarefas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label_qtdTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radio_obstaculos)
-                                    .addComponent(label_lista_tarefa))
-                                .addGap(0, 22, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radio_robos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label_qtdRobo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label_lista_tarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radio_robos)
-                    .addComponent(label_qtdRobo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radio_tarefas)
-                    .addComponent(label_qtdTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radio_obstaculos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }
 
     /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The
-     * content of this method is always regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         grupoBotao = new javax.swing.ButtonGroup();
-        gridConfig1 = new simulator.GridConfig();
-        label_lista_tarefa = new javax.swing.JLabel();
-        radio_robos = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
         radio_tarefas = new javax.swing.JRadioButton();
-        radio_obstaculos = new javax.swing.JRadioButton();
+        label_lista_tarefa = new javax.swing.JLabel();
+        botaoStep = new javax.swing.JButton();
+        botaoReset = new javax.swing.JButton();
         label_qtdRobo = new javax.swing.JLabel();
+        botaoRun = new javax.swing.JButton();
+        radio_robos = new javax.swing.JRadioButton();
+        radio_obstaculos = new javax.swing.JRadioButton();
         label_qtdTarefa = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Configurar Ambiente");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("H-CT com Obstáculos");
         setAlwaysOnTop(true);
-        setResizable(false);
+        setMaximumSize(null);
 
-        label_lista_tarefa.setText("Elementos para o ambiente");
-
-        grupoBotao.add(radio_robos);
-        radio_robos.setText("Robô");
-        radio_robos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radio_robosActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grupoBotao.add(radio_tarefas);
         radio_tarefas.setText("Tarefas");
@@ -184,6 +187,46 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                 radio_tarefasActionPerformed(evt);
             }
         });
+        jPanel1.add(radio_tarefas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 68, -1, -1));
+
+        label_lista_tarefa.setText("Elementos para o ambiente");
+        jPanel1.add(label_lista_tarefa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        botaoStep.setText("Passo");
+        botaoStep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoStepActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoStep, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 158, 75, -1));
+
+        botaoReset.setText("Resetar");
+        botaoReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoResetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 187, 75, -1));
+
+        label_qtdRobo.setText(qtdRobos + "");
+        jPanel1.add(label_qtdRobo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 36, 20, 25));
+
+        botaoRun.setText("Começar");
+        botaoRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRunActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 129, -1, -1));
+
+        grupoBotao.add(radio_robos);
+        radio_robos.setText("Robô");
+        radio_robos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio_robosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radio_robos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 37, -1, -1));
 
         grupoBotao.add(radio_obstaculos);
         radio_obstaculos.setText("Obstáculos");
@@ -192,67 +235,35 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
                 radio_obstaculosActionPerformed(evt);
             }
         });
-
-        label_qtdRobo.setText(qtdRobos + "");
+        jPanel1.add(radio_obstaculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 99, -1, -1));
 
         label_qtdTarefa.setText(qtdTarefas + "");
+        jPanel1.add(label_qtdTarefa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 67, 20, 25));
 
-        jButton1.setText("Começar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 247, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radio_tarefas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label_qtdTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radio_obstaculos)
-                                    .addComponent(label_lista_tarefa))
-                                .addGap(0, 22, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radio_robos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label_qtdRobo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label_lista_tarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radio_robos)
-                    .addComponent(label_qtdRobo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radio_tarefas)
-                    .addComponent(label_qtdTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radio_obstaculos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gridConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -270,21 +281,32 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         changeRadios();
     }//GEN-LAST:event_radio_obstaculosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (Actor ator : gridConfig1.getActors(Robot.class)) {
-            ArrayList robos = gridConfig1.getActors(Robot.class);
+    private void botaoRunActionPerformed(java.awt.event.ActionEvent evt) {
+        for (Actor ator : gridConfig.getActors(Robot.class)) {
+            ArrayList robos = gridConfig.getActors(Robot.class);
             robos.remove(ator);
             ator.addCollisionActors(robos);
-            ator.addCollisionActors(gridConfig1.getActors(Tarefa.class));
-            ator.addCollisionActors(gridConfig1.getActors(Obstaculo.class));
+            ator.addCollisionActors(gridConfig.getActors(Tarefa.class));
+            ator.addCollisionActors(gridConfig.getActors(Obstaculo.class));
         }
-        gridConfig1.doRun();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        gridConfig.doRun();
+//        gridConfig1.doStep();
+//        gridConfig1.doPause();
+//        gridConfig1.doReset();
+    }
+
+    private void botaoStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoStepActionPerformed
+        gridConfig.doStep();
+    }//GEN-LAST:event_botaoStepActionPerformed
+
+    private void botaoResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoResetActionPerformed
+        gridConfig.doReset();
+    }//GEN-LAST:event_botaoResetActionPerformed
 
     private void changeRadios() {
-        gridConfig1.setRobo_selected(radio_robos.isSelected());
-        gridConfig1.setTarefa_selected(radio_tarefas.isSelected());
-        gridConfig1.setObstaculo_selected(radio_obstaculos.isSelected());
+        gridConfig.setRobo_selected(radio_robos.isSelected());
+        gridConfig.setTarefa_selected(radio_tarefas.isSelected());
+        gridConfig.setObstaculo_selected(radio_obstaculos.isSelected());
     }
 
     /**
@@ -307,9 +329,12 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private simulator.GridConfig gridConfig1;
+    private javax.swing.JButton botaoReset;
+    private javax.swing.JButton botaoRun;
+    private javax.swing.JButton botaoStep;
     private javax.swing.ButtonGroup grupoBotao;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel label_lista_tarefa;
     private javax.swing.JLabel label_qtdRobo;
     private javax.swing.JLabel label_qtdTarefa;
@@ -320,6 +345,7 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
 
     private int qtdRobos;
     private int qtdTarefas;
+    private GridConfig gridConfig;
 
     public int getQtdRobos() {
         return qtdRobos;

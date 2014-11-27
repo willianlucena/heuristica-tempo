@@ -52,7 +52,7 @@ public class Configuracao extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Meu projeto");
+        setTitle("Configuração H-CT com Obstáculos");
         setMaximumSize(new java.awt.Dimension(750, 395));
         setResizable(false);
 
@@ -328,13 +328,6 @@ public class Configuracao extends javax.swing.JFrame {
         } else {
             ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);
             config.setVisible(true);
-            //grid.getRobosRandom();
-            //grid.getTarefasRandom();
-            //        for (int i = 0; i < 10; i++)
-//        addActor(new Leaf(), getRandomEmptyLocation());
-        
-            
-            
             JOptionPane.showMessageDialog(config, "Escolha o elemento a ser inserido no grid e clique em uma posição da matriz");
         }
         //ConfiguracaoAmbiente config = new ConfiguracaoAmbiente();

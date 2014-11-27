@@ -29,9 +29,6 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     private Integer qtdRobos;
     private Integer qtdTarefas;
 
-    private Boolean robosRandom;
-    private Boolean tarefasRandom;
-
     private List<Tarefa> tarefas = new ArrayList<>();
     private List<Robot> robos = new ArrayList<>();
 
@@ -42,16 +39,16 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     public int contDeployTask = 0;
 
     public static void main(String[] args) {
-        new GridConfig();
+        //new GridConfig();
     }
 
     public GridConfig() {
-        super(5, 5, 20, Color.BLACK, true);
-        this.setBgColor(Color.WHITE);
+        //super(5, 5, 20, Color.BLACK, true);
+        //this.setBgColor(Color.WHITE);
         //setTitle("Click to create a honey pot, press and drag to move it");
-        addMouseListener(this, GGMouse.lPress);
-        show();
-        doRun();
+        //addMouseListener(this, GGMouse.lPress);
+        //show();
+        //doRun();
     }
 
     public GridConfig(int nbHorzCells, int nbVertCells, int cellSize) {
@@ -80,8 +77,10 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     }
 
     public void mudarDirecao(Actor a) {
+        System.out.println(a.getClass().getName() + " - Direção vertical: " + a.isVertMirror());
+        System.out.println(a.getClass().getName() + " - Direção horizontal: " + a.isHorzMirror());
         a.turn(180);
-        a.setHorzMirror(!a.isHorzMirror());
+        //a.setHorzMirror(!a.isHorzMirror());
     }
 
     @Override
@@ -178,22 +177,6 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     public void setQtdTarefas(Integer qtdTarefas) {
         this.qtdTarefas = qtdTarefas;
-    }
-
-    public Boolean getRobosRandom() {
-        return robosRandom;
-    }
-
-    public void setRobosRandom(Boolean robosRandom) {
-        this.robosRandom = robosRandom;
-    }
-
-    public Boolean getTarefasRandom() {
-        return tarefasRandom;
-    }
-
-    public void setTarefasRandom(Boolean tarefasRandom) {
-        this.tarefasRandom = tarefasRandom;
     }
 
     public List<Tarefa> getTarefas() {
