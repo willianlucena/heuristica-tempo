@@ -107,8 +107,6 @@ class Util {
         grid.setAltura(y);
         grid.setQtdTarefas(listaTarefas.size());
         grid.setQtdRobos(listaRobos.size());
-        //grid.setRobosRandom(robosRandom);
-        //grid.setTarefasRandom(tarefasRandom);
         grid.setRobos(listaRobos);
         grid.setTarefas(listaTarefas);
         
