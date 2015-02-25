@@ -68,11 +68,11 @@ public class Tarefa extends Actor implements GGMouseListener {
         this.logRobot = logRobot;
     }
 
-    public boolean isIsSolved() {
+    public boolean isSolved() {
         return isSolved;
     }
 
-    public void setIsSolved(boolean isSolved) {
+    public void setSolved(boolean isSolved) {
         this.isSolved = isSolved;
     }
 
