@@ -20,7 +20,7 @@ import java.util.TreeSet;
  *
  * @author extra
  */
-public class Robot extends Actor implements GGMouseListener {
+public class Robot extends Actor implements GGMouseListener, Cloneable {
 
     String id; //nome robo
     boolean noSul = false;
@@ -52,7 +52,17 @@ public class Robot extends Actor implements GGMouseListener {
     public String getId() {
         return id;
     }
-      
+    
+    public void incrementaPeso() {
+        this.peso++;
+    }
+
+    public void decrementaTempo() {
+        if (this.tempoRobot > 0) {
+            this.tempoRobot--;
+        }
+    }
+        
     public void varredura() {
         Location location = getNextMoveLocation();
         //location
