@@ -13,23 +13,23 @@ import java.awt.EventQueue;
  */
 public class Main {
 
-	public Main() {
-		Ambiente ambiente = new Ambiente();
-		for (int i = 1; i < 4; i++) {
-			Robot r = new Robot("r" + i, true);
-			ambiente.addActor(r, ambiente.getRandomLocation());
-			//r.setDirection(new Random().nextInt(360));
-		}
+    public Main() {
+        Ambiente ambiente = new Ambiente();
+        for (int i = 1; i < 4; i++) {
+            Robot r = new Robot("r" + i, true);
+            ambiente.addActor(r, ambiente.getRandomLocation());
+            //r.setDirection(new Random().nextInt(360));
+        }
 
-		ambiente.init();
-	}
+        ambiente.init();
+    }
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				Main main = new Main();
-			}
-		});
-	}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Main main = new Main();
+            }
+        });
+    }
 }

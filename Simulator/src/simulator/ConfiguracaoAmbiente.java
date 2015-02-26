@@ -7,7 +7,8 @@ package simulator;
 
 import ch.aplu.jgamegrid.Actor;
 import java.awt.BorderLayout;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.TreeSet;
 import javax.swing.JLabel;
 
@@ -283,26 +284,25 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_obstaculosActionPerformed
 
     private void botaoRunActionPerformed(java.awt.event.ActionEvent evt) {
-        TreeSet<Robot> robotsMission = new TreeSet<Robot>(new OrdenaTempoTrabalho());
-        TreeSet<Tarefa> taskMission = new TreeSet<Tarefa>(new OrdenaTaskNome());
+        TreeSet<Robot> robotsMission = new TreeSet<Robot>(new OrdenaRobotNome());
+        Set<Tarefa> taskMission = new LinkedHashSet<Tarefa>();
         for (Actor ator : gridConfig.getActors(Robot.class)) {
             robotsMission.add((Robot) ator);
         }
         for (Actor task : gridConfig.getActors(Tarefa.class)) {
             taskMission.add((Tarefa) task);
         }
-        
+
         /*
-        for (Actor ator : gridConfig.getActors(Robot.class)) {
-            ArrayList robos = gridConfig.getActors(Robot.class);
-            robos.remove(ator);
-            ator.addCollisionActors(robos);
-            ator.addCollisionActors(gridConfig.getActors(Tarefa.class));
-            ator.addCollisionActors(gridConfig.getActors(Obstaculo.class));
-        }
-        gridConfig.doRun();
-        */
-        
+         for (Actor ator : gridConfig.getActors(Robot.class)) {
+         ArrayList robos = gridConfig.getActors(Robot.class);
+         robos.remove(ator);
+         ator.addCollisionActors(robos);
+         ator.addCollisionActors(gridConfig.getActors(Tarefa.class));
+         ator.addCollisionActors(gridConfig.getActors(Obstaculo.class));
+         }
+         gridConfig.doRun();
+         */
         /* Cria o ambiente definindo uma missão */
         Missao m = new Missao();
         /* Insere a lista de robôs na missão previamente definida */
@@ -323,7 +323,7 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         System.out.println("\n\n------------------------------");
         System.out.println("Após a realização da missão:");
         m.configRobots();
-        
+
 //        gridConfig1.doStep();
 //        gridConfig1.doPause();
 //        gridConfig1.doReset();

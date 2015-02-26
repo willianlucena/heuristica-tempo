@@ -13,8 +13,7 @@ public class Missao {
     private TreeSet<Robot> candidates = new TreeSet<Robot>(new OrdenaRobotNome());
     private Set<Tarefa> toDo = new LinkedHashSet<Tarefa>();
 
-	/* Suprimir 'warnings' da IDE Eclipse 3.7.0 */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    /* Suprimir 'warnings' da IDE Eclipse 3.7.0 */
     public void execMissao() {
         System.out.println("\n-----------------");
         System.out.println("EXECUÇÃO DA MISSÃO");
@@ -98,7 +97,7 @@ public class Missao {
                          * solucionar a tarefa. As linhas a seguir testam essa
                          * condição.
                          */
-                        Robot tmpBotAI = (Robot) aptosFisic.first();//.clone();
+                        Robot tmpBotAI = (Robot) aptosFisic.first().clone();
                         tmpBotAI.setSabeRobot(cloneKnowsBotAIAF);
                         if ((tmpBotAI.getSabeRobot().containsAll(t.getSabeTask()) && tmpBotAI.getFazRobot().containsAll(t.getFazTask())) && t.isSolved() == false) {
                             /* Há robô apto */
@@ -165,7 +164,7 @@ public class Missao {
                              * Fisicamente
                              */
                             for (String tmpATAF : cloneKnowsBotATAF) {
-                                    troca.add(tmpATAF);
+                                troca.add(tmpATAF);
                             }
                             /*
                              * Robô auxiliar, utilizado para garantir que o
@@ -174,7 +173,7 @@ public class Missao {
                              * suficiente para solucionar a tarefa. As linhas a
                              * seguir testam essa condição.
                              */
-                            Robot tmpATAF = aptosFisic.first();//.clone();
+                            Robot tmpATAF = aptosFisic.first().clone();
                             tmpATAF.setSabeRobot(troca);
                             if ((tmpATAF.getSabeRobot().containsAll(t.getSabeTask()) && tmpATAF.getFazRobot().containsAll(t.getFazTask())) && t.isSolved() == false) {
                                 /* Há robô apto */
@@ -236,8 +235,8 @@ public class Missao {
             }
         }
         System.out.println("\nTempo total de execução: "
-                + tempoExecucao.last().getTempoTrabalhoRobot()
-                + " unidades de tempo.");
+            + tempoExecucao.last().getTempoTrabalhoRobot()
+            + " unidades de tempo.");
     }
 
     // Exibe as configurações dos robôs
@@ -250,8 +249,8 @@ public class Missao {
             tmp = r.getSabeRobot();
             tmp.remove("");
             System.out.println(r.getId() + "=" + "{" + tmp + ";"
-                    + r.getFazRobot() + ";[" + r.getTempoRobot() + "]} -> \""
-                    + r.getTempoTrabalhoRobot() + "\"");
+                + r.getFazRobot() + ";[" + r.getTempoRobot() + "]} -> \""
+                + r.getTempoTrabalhoRobot() + "\"");
         }
     }
 
@@ -264,7 +263,7 @@ public class Missao {
         ordenaTask.addAll(toDo);
         for (Tarefa t : ordenaTask) {
             System.out.println(t.getNomeTask() + "=" + "{" + t.getSabeTask()
-                    + ";" + t.getFazTask() + ",[" + t.getTempoTask() + "]}");
+                + ";" + t.getFazTask() + ",[" + t.getTempoTask() + "]}");
         }
         ordenaTask.clear();
     }
