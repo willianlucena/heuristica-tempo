@@ -28,6 +28,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     private Integer qtdRobos;
     private Integer qtdTarefas;
+    private Integer qtdObstaculos;
 
     private List<Tarefa> tarefas = new ArrayList<>();
     private List<Robot> robos = new ArrayList<>();
@@ -37,6 +38,7 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     private boolean obstaculo_selected = false;
     public int contDeployRobot = 0;
     public int contDeployTask = 0;
+    public int contDeployObstaculo = 0;
 
     public static void main(String[] args) {
         //new GridConfig();
@@ -233,5 +235,33 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     public void setContDeployTask(int contDeployTask) {
         this.contDeployTask = contDeployTask;
+    }
+
+    public int getContDeployObstaculo() {
+        return contDeployObstaculo;
+    }
+
+    public void setContDeployObstaculo(int contDeployObstaculo) {
+        this.contDeployObstaculo = contDeployObstaculo;
+    }
+
+    public static int getNbRotSprites() {
+        return nbRotSprites;
+    }
+
+    public static void setNbRotSprites(int nbRotSprites) {
+        GameGrid.nbRotSprites = nbRotSprites;
+    }
+    
+    public static boolean isNbRotSprites() {
+        return true;
+    }
+
+    public Integer getQtdObstaculos() {
+        return qtdObstaculos;
+    }
+
+    public void setQtdObstaculos(Integer qtdObstaculos) {
+        this.qtdObstaculos = qtdObstaculos;
     }
 }
