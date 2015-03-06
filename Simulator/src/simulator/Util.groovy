@@ -138,6 +138,7 @@ class Util {
 
         javax.swing.JSpinner qtd_robos,
         javax.swing.JSpinner qtd_tarefas,
+        javax.swing.JSpinner qtd_obstaculos,
 
         org.jdesktop.swingx.JXTable tabela_robos,
         org.jdesktop.swingx.JXTable tabela_tarefas,
@@ -150,6 +151,7 @@ class Util {
 
         Integer qtdRobos = (Integer) qtd_robos.value;
         Integer qtdTarefas = (Integer) qtd_tarefas.value;
+        Integer qtdObstaculos = (Integer) qtd_obstaculos.value;
 
         Boolean robosRandom = robos_random.isSelected();
         Boolean tarefasRandom = tarefas_random.isSelected();
@@ -187,12 +189,14 @@ class Util {
                 String nomeTarefa = tabela_tarefas.model.getValueAt(i, 0);
                 String conhecimentos = tabela_tarefas.model.getValueAt(i, 1);
                 String habilidades = tabela_tarefas.model.getValueAt(i, 2);
+                Integer custo = tabela_tarefas.model.getValueAt(i, 3);
                 t.setNomeTask(nomeTarefa);
                 List<String> c = (conhecimentos?.split(",") as List<String>) ?: [];
                 if (c.size() > 0) t.setSabeTask(new TreeSet<>(c));
                 List<String> f = (habilidades?.split(",") as List<String>) ?: [];
                 if (f.size() > 0) t.setFazTask(new TreeSet<>(f));
                 listaTarefas.add(t);
+                t.setTempoTask(custo ?: 0);
             }
         }
 
@@ -201,9 +205,11 @@ class Util {
         grid.setAltura(y);
         grid.setQtdTarefas(listaTarefas.size());
         grid.setQtdRobos(listaRobos.size());
+        grid.setQtdObstaculos(qtdObstaculos ?: 0);
         grid.setRobos(listaRobos);
         grid.setTarefas(listaTarefas);
         
+        /* TODO verificar porque o random não esta funcionando.
         if (robosRandom) {
             for (int i = 0; i < grid.getQtdRobos(); i++) {
                 Robot robot = listaRobos.get(i);
@@ -220,13 +226,11 @@ class Util {
             grid.setContDeployTask(grid.getQtdTarefas());
         }
         
-        //        if (obstaculosRandom) {
-        //            for (int i = 0; i < grid.getQtdObstaculos(); i++) {
-        //                grid.addObstaculoRandom(new Obstaculo());
-        //            }
-        //            grid.setContDeployObstaculo(grid.getQtdObstaculos());
-        //        }
-
+        for (int i = 0; i < grid.getQtdObstaculos(); i++) {
+            grid.addObstaculoRandom(new Obstaculo());
+        }
+        grid.setContDeployObstaculo(grid.getQtdObstaculos() ?: 0);
+        */
         return grid;
 
     }
