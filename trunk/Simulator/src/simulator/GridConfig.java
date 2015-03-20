@@ -41,16 +41,16 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     public int contDeployObstaculo = 0;
 
     public static void main(String[] args) {
-        //new GridConfig();
+        new GridConfig();
     }
 
     public GridConfig() {
-        //super(5, 5, 20, Color.BLACK, true);
-        //this.setBgColor(Color.WHITE);
+        super(5, 5, 20, Color.BLACK, true);
+        this.setBgColor(Color.WHITE);
         //setTitle("Click to create a honey pot, press and drag to move it");
-        //addMouseListener(this, GGMouse.lPress);
-        //show();
-        //doRun();
+        addMouseListener(this, GGMouse.lPress);
+        show();
+        doRun();
     }
 
     public GridConfig(int nbHorzCells, int nbVertCells, int cellSize) {
@@ -243,18 +243,6 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
 
     public void setContDeployObstaculo(int contDeployObstaculo) {
         this.contDeployObstaculo = contDeployObstaculo;
-    }
-
-    public static int getNbRotSprites() {
-        return nbRotSprites;
-    }
-
-    public static void setNbRotSprites(int nbRotSprites) {
-        GameGrid.nbRotSprites = nbRotSprites;
-    }
-    
-    public static boolean isNbRotSprites() {
-        return true;
     }
 
     public Integer getQtdObstaculos() {
