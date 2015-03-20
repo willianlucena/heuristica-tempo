@@ -64,7 +64,7 @@ public class Robot extends Actor implements GGMouseListener, Cloneable {
     }
         
     public void varredura() {
-        Location location = getNextMoveLocation();
+        //Location location = getNextMoveLocation();
         //location
        
         if (isMoveValid()) {

@@ -209,8 +209,8 @@ class Util {
         grid.setRobos(listaRobos);
         grid.setTarefas(listaTarefas);
         
-        /* TODO verificar porque o random não esta funcionando.
-        if (robosRandom) {
+         //TODO verificar porque o random não esta funcionando.
+        /*if (robosRandom) {
             for (int i = 0; i < grid.getQtdRobos(); i++) {
                 Robot robot = listaRobos.get(i);
                 grid.addRoboRandom(robot);
@@ -225,12 +225,12 @@ class Util {
             }
             grid.setContDeployTask(grid.getQtdTarefas());
         }
-        
-        for (int i = 0; i < grid.getQtdObstaculos(); i++) {
-            grid.addObstaculoRandom(new Obstaculo());
-        }
-        grid.setContDeployObstaculo(grid.getQtdObstaculos() ?: 0);
         */
+//        for (int i = 0; i < grid.getQtdObstaculos(); i++) {
+//            grid.addObstaculoRandom(new Obstaculo());
+//        }
+//        grid.setContDeployObstaculo(grid.getQtdObstaculos() ?: 0);
+        
         return grid;
 
     }

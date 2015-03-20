@@ -7,9 +7,7 @@ package simulator;
 
 import ch.aplu.jgamegrid.Actor;
 import java.awt.BorderLayout;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 
 /**
@@ -151,6 +149,23 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         );
 
         pack();
+
+        for (int i = 0; i < gridConfig.getQtdRobos(); i++) {
+            Robot robot = gridConfig.getRobos().get(i);
+            gridConfig.addRoboRandom(robot);
+        }
+        gridConfig.setContDeployRobot(gridConfig.getQtdRobos());
+
+        for (int i = 0; i < gridConfig.getQtdTarefas(); i++) {
+            Tarefa tarefa = gridConfig.getTarefas().get(i);
+            gridConfig.addTarefaRandom(tarefa);
+        }
+        gridConfig.setContDeployTask(gridConfig.getQtdTarefas());
+
+        for (int i = 0; i < gridConfig.getQtdObstaculos(); i++) {
+            gridConfig.addObstaculoRandom(new Obstaculo());
+        }
+        if (gridConfig.getQtdObstaculos() > 0) gridConfig.setContDeployObstaculo(gridConfig.getQtdObstaculos());
     }
 
     /**
@@ -284,45 +299,47 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
     }//GEN-LAST:event_radio_obstaculosActionPerformed
 
     private void botaoRunActionPerformed(java.awt.event.ActionEvent evt) {
-        TreeSet<Robot> robotsMission = new TreeSet<Robot>(new OrdenaRobotNome());
-        Set<Tarefa> taskMission = new LinkedHashSet<Tarefa>();
-        for (Actor ator : gridConfig.getActors(Robot.class)) {
-            robotsMission.add((Robot) ator);
-        }
-        for (Actor task : gridConfig.getActors(Tarefa.class)) {
-            taskMission.add((Tarefa) task);
-        }
-
         /*
+         TreeSet<Robot> robotsMission = new TreeSet<Robot>(new OrdenaRobotNome());
+         Set<Tarefa> taskMission = new LinkedHashSet<Tarefa>();
          for (Actor ator : gridConfig.getActors(Robot.class)) {
-         ArrayList robos = gridConfig.getActors(Robot.class);
-         robos.remove(ator);
-         ator.addCollisionActors(robos);
-         ator.addCollisionActors(gridConfig.getActors(Tarefa.class));
-         ator.addCollisionActors(gridConfig.getActors(Obstaculo.class));
+         robotsMission.add((Robot) ator);
          }
-         gridConfig.doRun();
+         for (Actor task : gridConfig.getActors(Tarefa.class)) {
+         taskMission.add((Tarefa) task);
+         }
          */
-        /* Cria o ambiente definindo uma missão */
-        Missao m = new Missao();
-        /* Insere a lista de robôs na missão previamente definida */
-        m.setCandidates(robotsMission);
-        /* Insere a lista de tarefas na missão previamente definida */
-        m.setToDo(taskMission);
-        /* Exibe as configurações dos robôs, antes de realizarem a missão */
-        m.configRobots();
-        /* Exibe as configurações das tarefas que compõem a missão */
-        m.configTasks();
-        /* Exibe a lista de robôs escalados para resolver a missão */
-        m.listaRobots();
-        /* Exibe a lista de tarefas a serem resolvidas pelos robôs */
-        m.listaTasks();
-        /* Executa a missão, na qual cada tarefa deve ser resolvida */
-        m.execMissao();
-        /* Exibe as configurações dos robôs, após realizarem a missão */
-        System.out.println("\n\n------------------------------");
-        System.out.println("Após a realização da missão:");
-        m.configRobots();
+
+        for (Actor ator : gridConfig.getActors(Robot.class)) {
+            ArrayList robos = gridConfig.getActors(Robot.class);
+            robos.remove(ator);
+            ator.addCollisionActors(robos);
+            ator.addCollisionActors(gridConfig.getActors(Tarefa.class));
+            ator.addCollisionActors(gridConfig.getActors(Obstaculo.class));
+        }
+        gridConfig.doRun();
+        /*
+         //Cria o ambiente definindo uma missão
+         Missao m = new Missao();
+         // Insere a lista de robôs na missão previamente definida
+         m.setCandidates(robotsMission);
+         // Insere a lista de tarefas na missão previamente definida
+         m.setToDo(taskMission);
+         // Exibe as configurações dos robôs, antes de realizarem a missão
+         m.configRobots();
+         // Exibe as configurações das tarefas que compõem a missão 
+         m.configTasks();
+         // Exibe a lista de robôs escalados para resolver a missão 
+         m.listaRobots();
+         // Exibe a lista de tarefas a serem resolvidas pelos robôs 
+         m.listaTasks();
+         // Executa a missão, na qual cada tarefa deve ser resolvida 
+         m.execMissao();
+         // Exibe as configurações dos robôs, após realizarem a missão 
+         System.out.println("\n\n------------------------------");
+         System.out.println("Após a realização da missão:");
+         m.configRobots();
+         */
 
 //        gridConfig1.doStep();
 //        gridConfig1.doPause();
