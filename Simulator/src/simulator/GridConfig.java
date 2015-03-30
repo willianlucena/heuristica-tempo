@@ -39,6 +39,8 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     public int contDeployRobot = 0;
     public int contDeployTask = 0;
     public int contDeployObstaculo = 0;
+    public boolean robosRandom = false;
+    public boolean tarefasRandom = false;  
 
     public static void main(String[] args) {
         new GridConfig();
@@ -252,4 +254,22 @@ public class GridConfig extends GameGrid implements GGActorCollisionListener, GG
     public void setQtdObstaculos(Integer qtdObstaculos) {
         this.qtdObstaculos = qtdObstaculos;
     }
+
+    public boolean isRobosRandom() {
+        return robosRandom;
+    }
+
+    public void setRobosRandom(boolean robosRandom) {
+        this.robosRandom = robosRandom;
+    }
+
+    public boolean isTarefasRandom() {
+        return tarefasRandom;
+    }
+
+    public void setTarefasRandom(boolean tarefasRandom) {
+        this.tarefasRandom = tarefasRandom;
+    }
+    
+    
 }

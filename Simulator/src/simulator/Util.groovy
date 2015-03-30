@@ -208,6 +208,8 @@ class Util {
         grid.setQtdObstaculos(qtdObstaculos ?: 0);
         grid.setRobos(listaRobos);
         grid.setTarefas(listaTarefas);
+        grid.setRobosRandom(robosRandom);
+        grid.setTarefasRandom(tarefasRandom);
         
          //TODO verificar porque o random não esta funcionando.
         /*if (robosRandom) {
