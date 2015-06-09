@@ -148,8 +148,8 @@
                           <Component id="largura_x" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="robos_random" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="tarefas_random" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="9" max="-2" attributes="0"/>

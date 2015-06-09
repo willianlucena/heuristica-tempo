@@ -194,8 +194,8 @@ public class Configuracao extends javax.swing.JFrame {
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(largura_x, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(robos_random, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tarefas_random, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(tarefas_random, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,7 +344,7 @@ public class Configuracao extends javax.swing.JFrame {
                 tabela_tarefas,
                 robos_random,
                 tarefas_random);
-        if ((grid.getRobos().size() + grid.getTarefas().size()) > (grid.getLargura() * grid.getAltura())) {
+        if ((grid.getRobos().size() + grid.getTarefas().size() + grid.getQtdObstaculos()) > (grid.getLargura() * grid.getAltura())) {
             JOptionPane.showMessageDialog(null, "A quantidade de robôs e tarefas é maior que o espaço reservado para a arena");
         } else {
             ConfiguracaoAmbiente config = new ConfiguracaoAmbiente(grid);

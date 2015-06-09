@@ -35,6 +35,28 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         qtdTarefas = gridConfig.getQtdTarefas();
         initComponents(gridConfig);
         //initComponents();
+        if (gridConfig.robosRandom) {
+            for (int i = 0; i < gridConfig.getQtdRobos(); i++) {
+                Robot robot = gridConfig.getRobos().get(i);
+                gridConfig.addRoboRandom(robot);
+            }
+            gridConfig.setContDeployRobot(gridConfig.getQtdRobos());
+        }
+
+        if (gridConfig.tarefasRandom) {
+            for (int i = 0; i < gridConfig.getQtdTarefas(); i++) {
+                Tarefa tarefa = gridConfig.getTarefas().get(i);
+                gridConfig.addTarefaRandom(tarefa);
+            }
+            gridConfig.setContDeployTask(gridConfig.getQtdTarefas());
+        }
+
+        for (int i = 0; i < gridConfig.getQtdObstaculos(); i++) {
+            gridConfig.addObstaculoRandom(new Obstaculo());
+        }
+        if (gridConfig.getQtdObstaculos() > 0) {
+            gridConfig.setContDeployObstaculo(gridConfig.getQtdObstaculos());
+        }
     }
 
     private void initComponents(GridConfig grid) {
@@ -124,51 +146,30 @@ public class ConfiguracaoAmbiente extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 276, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-
-        if (gridConfig.robosRandom) {
-            for (int i = 0; i < gridConfig.getQtdRobos(); i++) {
-                Robot robot = gridConfig.getRobos().get(i);
-                gridConfig.addRoboRandom(robot);
-            }
-            gridConfig.setContDeployRobot(gridConfig.getQtdRobos());
-        }
-
-        if (gridConfig.tarefasRandom) {
-            for (int i = 0; i < gridConfig.getQtdTarefas(); i++) {
-                Tarefa tarefa = gridConfig.getTarefas().get(i);
-                gridConfig.addTarefaRandom(tarefa);
-            }
-            gridConfig.setContDeployTask(gridConfig.getQtdTarefas());
-        }
-
-        for (int i = 0; i < gridConfig.getQtdObstaculos(); i++) {
-            gridConfig.addObstaculoRandom(new Obstaculo());
-        }
-        if (gridConfig.getQtdObstaculos() > 0) gridConfig.setContDeployObstaculo(gridConfig.getQtdObstaculos());
     }
 
     /**
