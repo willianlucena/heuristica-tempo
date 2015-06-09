@@ -17,81 +17,33 @@ class Util {
     static Object[][] montarTabelaRobos(Integer qtd_robos) {
         def mapa = []
         if (qtd_robos > 0) {
-            //            (1..qtd_robos).each {
-            //                mapa.add(["Robô $it", null, null])
-            //            }
+            (1..qtd_robos).each {
+                mapa.add(["Robô $it", null, null])
+            }
             
-            /* R1={[c4];[f1]} */
-            //            Robot r1 = new Robot("r1");
-            //            r1.setSabeRobot("c4");
-            //            r1.setFazRobot("f1");
-            mapa.add(["r1", "c4", "f1"])
-
-            /* R2={[];[f1, f2]} */
-            //            Robot r2 = new Robot("r2");
-            //            r2.setFazRobot("f1");
-            //            r2.setFazRobot("f2");
+            /* R={R1, R2, R3, R4, R5, R6, R7, R8, R9, R10} */
+            /*mapa.add(["r1", "c4", "f1"])
             mapa.add(["r2", null, "f1,f2"])
-
-            /* R3={[c1];[f2, f3]} */
-            //            Robot r3 = new Robot("r3");
-            //            r3.setSabeRobot("c1");
-            //            r3.setFazRobot("f2");
-            //            r3.setFazRobot("f3");
             mapa.add(["r3", "c1", "f2,f3"])
-
-            /* R4={[c4, c1];[f1]} */
-            //            Robot r4 = new Robot("r4");
-            //            r4.setSabeRobot("c4");
-            //            r4.setSabeRobot("c1");
-            //            r4.setFazRobot("f1");
             mapa.add(["r4", "c1,c4", "f1"])
-
-            /* R5={[c2];[f1, f2, f3]} */
-            //            Robot r5 = new Robot("r5");
-            //            r5.setSabeRobot("c2");
-            //            r5.setFazRobot("f1");
-            //            r5.setFazRobot("f2");
-            //            r5.setFazRobot("f3");
             mapa.add(["r5", "c2", "f1,f2,f3"])
-
-            /* R6={[c1, c3];[f2]} */
-            //            Robot r6 = new Robot("r6");
-            //            r6.setSabeRobot("c1");
-            //            r6.setSabeRobot("c3");
-            //            r6.setFazRobot("f2");
             mapa.add(["r6", "c1,c3", "f2"])
-
-            /* R7={[c3];[f1, f3]} */
-            //            Robot r7 = new Robot("r7");
-            //            r7.setSabeRobot("c3");
-            //            r7.setFazRobot("f1");
-            //            r7.setFazRobot("f3");
             mapa.add(["r7", "c3", "f1,f3"])
-
-            /* R8={[];[f1, f2, f3]} */
-            //            Robot r8 = new Robot("r8");
-            //            r8.setFazRobot("f1");
-            //            r8.setFazRobot("f2");
-            //            r8.setFazRobot("f3");
             mapa.add(["r8", null, "f1,f2,f3"])
-
-            /* R9={[c2, c3];[f3]} */
-            //            Robot r9 = new Robot("r9");
-            //            r9.setSabeRobot("c2");
-            //            r9.setSabeRobot("c3");
-            //            r9.setFazRobot("f3");
             mapa.add(["r9", "c2,c3", "f3"])
-
-            /* R10={[c2, c3, c4];[f1, f3]} */
-            //            Robot r10 = new Robot("r10");
-            //            r10.setSabeRobot("c2");
-            //            r10.setSabeRobot("c3");
-            //            r10.setSabeRobot("c4");
-            //            r10.setFazRobot("f1");
-            //            r10.setFazRobot("f3");
             mapa.add(["r10", "c2,c3,c4", "f1,f3"])
-            
+            */
+            /* R1={[c4];[f1]} */
+            /* R2={[];[f1, f2]} */
+            /* R3={[c1];[f2, f3]} */
+            /* R4={[c4, c1];[f1]} */
+            /* R5={[c2];[f1, f2, f3]} */
+            /* R6={[c1, c3];[f2]} */
+            /* R7={[c3];[f1, f3]} */
+            /* R8={[];[f1, f2, f3]} */
+            /* R9={[c2, c3];[f3]} */
+            /* R10={[c2, c3, c4];[f1, f3]} */
+
             return mapa
         } else {
             return mapa
@@ -101,10 +53,11 @@ class Util {
     static Object[][] montarTabelaTarefas(Integer qtd_tarefas) {
         def mapa = []
         if (qtd_tarefas > 0) {
-            //            (1..qtd_tarefas).each {
-            //                mapa.add(["Tarefa $it", null, null, null])
-            //            }
+            (1..qtd_tarefas).each {
+                mapa.add(["Tarefa $it", null, null, null])
+            }
             /* T={T4, T9, T6, T8, T1, T10, T2, T5, T3, T7} */
+            /*
             mapa.add(["t4", "c2", "f2", 2])
             mapa.add(["t9", "c4", "f1,f2,f3", 3])
             mapa.add(["t6", "c4", "f2", 1])
@@ -115,7 +68,7 @@ class Util {
             mapa.add(["t5", "c3,c4", "f1", 4])
             mapa.add(["t3", "c2,c3", "f1,f2", 1])
             mapa.add(["t7", "c1,c3", "f3", 2])
-                
+             */    
             /* T4={[c2];[f2];[2]} */
             /* T9={[c4];[f1, f2, f3];[3]} */
             /* T6={[c4];[f2];[1]} */
@@ -210,28 +163,6 @@ class Util {
         grid.setTarefas(listaTarefas);
         grid.setRobosRandom(robosRandom);
         grid.setTarefasRandom(tarefasRandom);
-        
-         //TODO verificar porque o random não esta funcionando.
-        /*if (robosRandom) {
-            for (int i = 0; i < grid.getQtdRobos(); i++) {
-                Robot robot = listaRobos.get(i);
-                grid.addRoboRandom(robot);
-            }
-            grid.setContDeployRobot(grid.getQtdRobos());
-        }
-        
-        if (tarefasRandom) {
-            for (int i = 0; i < grid.getQtdTarefas(); i++) {
-                Tarefa tarefa = listaTarefas.get(i);
-                grid.addTarefaRandom(tarefa);
-            }
-            grid.setContDeployTask(grid.getQtdTarefas());
-        }
-        */
-//        for (int i = 0; i < grid.getQtdObstaculos(); i++) {
-//            grid.addObstaculoRandom(new Obstaculo());
-//        }
-//        grid.setContDeployObstaculo(grid.getQtdObstaculos() ?: 0);
         
         return grid;
 
