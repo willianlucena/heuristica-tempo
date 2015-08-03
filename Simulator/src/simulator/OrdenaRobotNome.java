@@ -17,10 +17,11 @@ public class OrdenaRobotNome implements Comparator<Robot> {
     public int compare(Robot o1, Robot o2) {
         if (o1.getId().length() == o2.getId().length()) {
             return o1.getId().compareToIgnoreCase(o2.getId());
-        } else if (o1.getId().length() > o2.getId().length())
+        } else if (o1.getId().length() > o2.getId().length()) {
             return 1;
-        else
+        } else {
             return 0;
+        }
     }
-    
+
 }
